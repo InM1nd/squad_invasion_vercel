@@ -12,20 +12,24 @@ export default function Header() {
     <header className="py-12 md:py-16">
       {/* Centered container for logo and title */}
       <div className="flex flex-col items-center justify-center gap-3">
-        
+
         {/* Logo and title row */}
         <div className="flex items-center gap-3" data-testid="logo-section">
           {/* Team logo - Shield icon representing defense and teamwork */}
-          <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-primary">
-            <Shield className="h-8 w-8 text-primary-foreground" />
+          <div className="flex h-20 w-20 items-center justify-center rounded-xl bg-primary">
+            <img
+              src="/stategic_discord.jpg"
+              alt="Strategic Discord"
+              className="w-20 h-20 object-cover rounded-xl"
+            />
           </div>
-          
+
           {/* Team name heading */}
           <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-            Alpha Squad
+            BÜRN
           </h1>
         </div>
-        
+
         {/* Team tagline/description */}
         <p className="text-base md:text-lg text-muted-foreground max-w-2xl text-center px-4">
           Elite Invasion Mode Specialists
