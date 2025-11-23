@@ -18,7 +18,7 @@ export default function Header() {
           {/* Team logo - Shield icon representing defense and teamwork */}
           <div className="flex h-20 w-20 items-center justify-center rounded-xl bg-primary">
             <img
-              src="/stategic_discord.jpg"
+              src="/strategic_discord.jpg"
               alt="Strategic Discord"
               className="w-20 h-20 object-cover rounded-xl"
             />

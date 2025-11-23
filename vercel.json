@@ -1,10 +1,23 @@
 {
   "version": 2,
   "builds": [
-    { "src": "dist/public/**/*", "use": "@vercel/static" }
+    {
+      "src": "dist/public/**/*",
+      "use": "@vercel/static"
+    }
   ],
   "routes": [
-    { "src": "/assets/(.*)", "dest": "/dist/public/assets/$1" },
-    { "src": "/(.*)", "dest": "/dist/public/index.html" }
+    {
+      "src": "/strategic_discord\\.jpg$",
+      "dest": "/dist/public/strategic_discord.jpg"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/dist/public/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/dist/public/index.html"
+    }
   ]
 }
