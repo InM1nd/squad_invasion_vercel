@@ -3,7 +3,6 @@ import type {
   EventItem,
   GalleryItem,
   ScheduleBlock,
-  AvailabilitySlot,
   SocialLink,
   TeamMember,
 } from "@/lib/types";

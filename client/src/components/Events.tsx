@@ -9,10 +9,10 @@
 import { Calendar, Clock, MapPin, Activity } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import type { Event } from "@shared/schema";
+import type { EventItem } from "@/lib/types";
 
 interface EventsProps {
-  events: Event[];
+  events: EventItem[];
 }
 
 export default function Events({ events }: EventsProps) {

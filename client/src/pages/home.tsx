@@ -6,12 +6,13 @@ import Contact from "@/components/Contact";
 import Links from "@/components/Links";
 import Highlights, { type HighlightCard } from "@/components/Highlights";
 import IntelFeed, { type IntelItem } from "@/components/IntelFeed";
-import type { TeamMember, Event, ContactInfo, SocialLink } from "@shared/schema";
+import type { TeamMember, EventItem, ContactInfo, SocialLink } from "@/lib/types";
 import { ShieldCheck, Zap, Waves } from "lucide-react";
 
-const teamMembers: TeamMember[] = [
+const teamMembers: (TeamMember & { name: string; role: string; bio: string })[] = [
   {
     id: '1',
+    translationKey: "sin",
     name: "Sex Instructor NATO",
     role: "Командир рейда",
     bio: "Отвечает за темп и итоговые решения. Переключает состав между full send и методичной зачисткой за одно предложение.",
@@ -19,6 +20,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: '2',
+    translationKey: "thirteen",
     name: "13th",
     role: "Shot-caller",
     bio: "Живёт в голосовом канале и фиксит любую рассыпавшуюся коммуникацию. Параллельно подбрасывает инфу и сарказм.",
@@ -26,6 +28,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: '3',
+    translationKey: "satana",
     name: "Satana v Triko",
     role: "Саботаж и фланги",
     bio: "Заходит там, где стены на карте. Ломает экономику, пока остальные думают, где он вообще появился.",
@@ -33,6 +36,7 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: '4',
+    translationKey: "metr",
     name: "Metr Pihalych",
     role: "Деф-блок",
     bio: "Ставит непроходимые щиты, отслеживает тайминги спама и держит тиммейтов в живых чистой волей.",
@@ -40,13 +44,13 @@ const teamMembers: TeamMember[] = [
   },
 ];
 
-const contactInfo: ContactInfo = { email: "dixon.ltd50@gmail.com", phone: "https://discord.gg/9w4N777V", location: "Europe" };
+const contactInfo: ContactInfo = { email: "dixon.ltd50@gmail.com", discord: "https://discord.gg/9w4N777V", regionKey: "regionValue" };
 const socialLinks: SocialLink[] = [
-  { id: "1", name: "Twitch", url: "https://twitch.tv", icon: "twitch" },
-  { id: "2", name: "YouTube", url: "https://youtube.com", icon: "youtube" },
-  { id: "3", name: "X", url: "https://x.com", icon: "x" },
-  { id: "4", name: "Discord", url: "https://discord.gg", icon: "discord" },
-  { id: "5", name: "Steam", url: "https://steamcommunity.com/groups", icon: "steam" },
+  { id: "1", labelKey: "twitch", url: "https://twitch.tv", icon: "twitch" },
+  { id: "2", labelKey: "youtube", url: "https://youtube.com", icon: "youtube" },
+  { id: "3", labelKey: "x", url: "https://x.com", icon: "x" },
+  { id: "4", labelKey: "discord", url: "https://discord.gg", icon: "discord" },
+  { id: "5", labelKey: "steam", url: "https://steamcommunity.com/groups", icon: "steam" },
 ];
 
 const highlightCards: HighlightCard[] = [
@@ -119,7 +123,7 @@ const intelFeed: IntelItem[] = [
 ];
 
 export default function Home() {
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<EventItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -133,7 +137,7 @@ export default function Home() {
         );
         const data = await res.json();
         const items = Array.isArray(data.items) ? data.items : [];
-        const parsedEvents: Event[] = items.map((item: any) => ({
+        const parsedEvents: EventItem[] = items.map((item: any) => ({
           id: item.id,
           title: item.summary,
           date: item.start.dateTime || item.start.date,

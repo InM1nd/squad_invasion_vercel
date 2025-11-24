@@ -33,8 +33,8 @@ export default async function LocaleLayout({ children, params }: Props) {
   const tNav = await getTranslations({ locale, namespace: "navMenu" });
 
   const navLinks = [
-    { href: "/roadmap", label: tNav("roadmap") },
-    { href: "/rules", label: tNav("rules") },
+    { href: "/roadmap" as const, label: tNav("roadmap") },
+    { href: "/rules" as const, label: tNav("rules") },
   ];
 
   return (

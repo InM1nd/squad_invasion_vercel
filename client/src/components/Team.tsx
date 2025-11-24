@@ -9,10 +9,10 @@
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import type { TeamMember } from "@shared/schema";
+import type { TeamMember } from "@/lib/types";
 
 interface TeamProps {
-  members: TeamMember[];
+  members: (TeamMember & { name: string; role: string; bio: string })[];
 }
 
 export default function Team({ members }: TeamProps) {
