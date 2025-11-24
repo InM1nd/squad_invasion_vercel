@@ -122,6 +122,75 @@ const intelFeed: IntelItem[] = [
   },
 ];
 
+const highlightCards: HighlightCard[] = [
+  {
+    id: "discipline",
+    label: "Связь",
+    title: "Дисциплина без скуки",
+    description: "Чёткие каллауты держатся на привычке, а не на страхе. Мы реагируем за 0.8 секунды и при этом успеваем шутить.",
+    metric: "0.8 сек // средний отклик",
+    icon: Waves,
+    accent: "cyan",
+  },
+  {
+    id: "adapt",
+    label: "Игра",
+    title: "Адаптивные компы",
+    description: "Меняем ролики на лету. Если нужен двойной саппорт или три инженера — это не обсуждение на 10 минут.",
+    metric: "3.2 // замены за матч",
+    icon: Zap,
+    accent: "amber",
+  },
+  {
+    id: "shield",
+    label: "Защита",
+    title: "Силовое удержание",
+    description: "В сетапе — стенки, на точке — хладнокровные люди. Наша оборона держится на мат-анализе и вере в друг друга.",
+    metric: "87% удержание точек",
+    icon: ShieldCheck,
+    accent: "violet",
+  },
+];
+
+const intelFeed: IntelItem[] = [
+  {
+    id: "ops",
+    title: "Серия побед",
+    detail: "Последние официальные Invasion лобби закрыты без поражений. Противники ливают на стадии третьей волны.",
+    value: "12-0",
+    delta: "+4 к прошлой неделе",
+    status: "up",
+    timestamp: "24 NOV // 23:40",
+  },
+  {
+    id: "scrim",
+    title: "Тренировки",
+    detail: "Каждая среда — кастомка против дружественных кланов. Формируем новые связки и отрабатываем анти-мету.",
+    value: "4 сета",
+    delta: "стабильный график",
+    status: "steady",
+    timestamp: "24 NOV // 20:10",
+  },
+  {
+    id: "recruits",
+    title: "Новые бойцы",
+    detail: "Запускаем воркшоп для свежих игроков. Берём тех, кто быстро встаёт на связь и не боится слушать.",
+    value: "+6 кандидатов",
+    delta: "дофильтровано 2",
+    status: "up",
+    timestamp: "23 NOV // 18:55",
+  },
+  {
+    id: "support",
+    title: "Медиа и сообщество",
+    detail: "Твич живой, хайлайты улетают в тикток. Мы хотим, чтобы атмосфера чувствовалась до того, как человек зайдёт в игру.",
+    value: "3 канала",
+    delta: "-1 офф неделя",
+    status: "down",
+    timestamp: "22 NOV // 14:20",
+  },
+];
+
 export default function Home() {
   const [events, setEvents] = useState<EventItem[]>([]);
   const [loading, setLoading] = useState(true);
