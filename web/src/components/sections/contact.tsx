@@ -39,7 +39,7 @@ export function ContactSection({ contact }: ContactSectionProps) {
 
           <Card className="p-0">
             <a
-              href={contact.phone}
+              href={contact.discord}
               target="_blank"
               rel="noreferrer"
               className="flex flex-col items-center space-y-4 p-6 text-center"
@@ -52,7 +52,7 @@ export function ContactSection({ contact }: ContactSectionProps) {
                   Discord
                 </p>
                 <p className="text-base font-medium text-foreground">
-                  {contact.phone}
+                  {contact.discord}
                 </p>
               </div>
             </a>
@@ -67,7 +67,7 @@ export function ContactSection({ contact }: ContactSectionProps) {
                 Region
               </p>
               <p className="text-base font-medium text-foreground">
-                {contact.location}
+                {contact.regionKey}
               </p>
             </div>
           </Card>

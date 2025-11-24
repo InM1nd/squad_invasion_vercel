@@ -53,7 +53,7 @@ export function LinksSection({ links }: LinksSectionProps) {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Visit our ${link.name} page`}
+                  aria-label={`Visit our ${link.labelKey} page`}
                 >
                   <Icon className="h-6 w-6" />
                 </a>

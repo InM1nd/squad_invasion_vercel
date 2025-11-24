@@ -4,7 +4,7 @@ import { routing } from "./src/i18n/routing";
 export default createMiddleware({
   locales: routing.locales,
   defaultLocale: routing.defaultLocale,
-  localePrefix: routing.localePrefix,
+  localePrefix: routing.localePrefix as "always",
 });
 
 export const config = {

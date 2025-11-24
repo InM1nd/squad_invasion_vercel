@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { locales } from "@/i18n/locales";
-import { usePathname, useRouter } from "@/i18n/routing";
+import { usePathname, useRouter } from "@/i18n/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,7 +30,7 @@ export function LanguageSwitcher() {
         {locales.map((value) => (
           <DropdownMenuItem
             key={value}
-            onClick={() => router.replace({ pathname, locale: value })}
+            onClick={() => router.push(pathname, { locale: value })}
             className={value === locale ? "font-semibold" : undefined}
           >
             {value.toUpperCase()}

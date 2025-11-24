@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import type { TeamMember } from "@/lib/types";
 
 interface TeamSectionProps {
-  members: TeamMember[];
+  members: (TeamMember & { name: string; role: string; bio: string })[];
 }
 
 export function TeamSection({ members }: TeamSectionProps) {

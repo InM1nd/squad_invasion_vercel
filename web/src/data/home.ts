@@ -6,9 +6,10 @@ import type {
 } from "@/lib/types";
 import { ShieldCheck, Zap, Waves } from "lucide-react";
 
-export const teamMembers: TeamMember[] = [
+export const teamMembers: (TeamMember & { name: string; role: string; bio: string })[] = [
   {
     id: "1",
+    translationKey: "members.sin",
     name: "Sex Instructor NATO",
     role: "Командир рейда",
     bio: "Отвечает за темп и итоговые решения. Переключает состав между full send и методичной зачисткой за одно предложение.",
@@ -16,6 +17,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: "2",
+    translationKey: "members.thirteen",
     name: "13th",
     role: "Shot-caller",
     bio: "Живёт в голосовом канале и фиксит любую рассыпавшуюся коммуникацию. Параллельно подбрасывает инфу и сарказм.",
@@ -23,6 +25,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: "3",
+    translationKey: "members.satana",
     name: "Satana v Triko",
     role: "Саботаж и фланги",
     bio: "Заходит там, где стены на карте. Ломает экономику, пока остальные думают, где он вообще появился.",
@@ -30,6 +33,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: "4",
+    translationKey: "members.metr",
     name: "Metr Pihalych",
     role: "Деф-блок",
     bio: "Ставит непроходимые щиты, отслеживает тайминги спама и держит тиммейтов в живых чистой волей.",
@@ -39,18 +43,18 @@ export const teamMembers: TeamMember[] = [
 
 export const contactInfo: ContactInfo = {
   email: "dixon.ltd50@gmail.com",
-  phone: "https://discord.gg/9w4N777V",
-  location: "Europe",
+  discord: "https://discord.gg/9w4N777V",
+  regionKey: "regionValue",
 };
 
 export const socialLinks: SocialLink[] = [
-  { id: "1", name: "Twitch", url: "https://twitch.tv", icon: "twitch" },
-  { id: "2", name: "YouTube", url: "https://youtube.com", icon: "youtube" },
-  { id: "3", name: "X", url: "https://x.com", icon: "x" },
-  { id: "4", name: "Discord", url: "https://discord.gg", icon: "discord" },
+  { id: "1", labelKey: "items.twitch", url: "https://twitch.tv", icon: "twitch" },
+  { id: "2", labelKey: "items.youtube", url: "https://youtube.com", icon: "youtube" },
+  { id: "3", labelKey: "items.x", url: "https://x.com", icon: "x" },
+  { id: "4", labelKey: "items.discord", url: "https://discord.gg", icon: "discord" },
   {
     id: "5",
-    name: "Steam",
+    labelKey: "items.steam",
     url: "https://steamcommunity.com/groups",
     icon: "steam",
   },

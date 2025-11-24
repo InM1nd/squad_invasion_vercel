@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -18,13 +18,14 @@ export function generateStaticParams() {
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
-  const { locale } = params;
+  const { locale: rawLocale } = params;
 
-  if (!routing.locales.includes(locale)) {
+  if (!(routing.locales as readonly string[]).includes(rawLocale)) {
     notFound();
   }
+  const locale = rawLocale as (typeof routing.locales)[number];
 
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   const messages = (await import(`@/locales/${locale}.json`)).default;
 
   return (
