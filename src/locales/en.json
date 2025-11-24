@@ -1,0 +1,341 @@
+{
+  "common": {
+    "title": "BÜRN Task Force",
+    "subtitle": "Friendly 50v50 invasion scrims with real structure.",
+    "cta_join": "Join the HQ",
+    "cta_watch": "Watch the stream",
+    "description": "Drop into an organized match without sweatshop vibes.",
+    "footer": "© 2025 BÜRN Task Force. Good games, good comms."
+  },
+  "nav": {
+    "theme": "Theme",
+    "language": "Language"
+  },
+  "hero": {
+    "badge": "Season VII // Invasion Lounge",
+    "title": "BÜRN — organized chaos for squads who enjoy good games",
+    "description": "We host invasion lobbies with fast intel, fair play and jokes that survive both languages. Expect clean pushes, patient anchors and zero ego wars.",
+    "callouts": {
+      "first": "Cross-clan coordination",
+      "second": "Friendly command 24/7",
+      "third": "Flexible training pods"
+    },
+    "stats": {
+      "seasonRuns": {
+        "label": "Invasion runs per season",
+        "value": "140+"
+      },
+      "holdRate": {
+        "label": "Objective hold rate",
+        "value": "87%"
+      },
+      "activePlayers": {
+        "label": "Active operators",
+        "value": "32"
+      }
+    },
+    "glance": {
+      "role": {
+        "label": "Role",
+        "value": "Anti-meta raid unit"
+      },
+      "focus": {
+        "label": "Focus",
+        "value": "Quick point cracks, eco disruption"
+      },
+      "timezone": {
+        "label": "Schedule",
+        "value": "EU prime / late NA"
+      }
+    }
+  },
+  "highlights": {
+    "eyebrow": "Field Report",
+    "title": "Why teams enjoy running into us",
+    "description": "A short brief of the tools we bring to every scrim. It stays respectful, yet annoyingly effective.",
+    "metricLabel": "Current metric",
+    "cards": {
+      "discipline": {
+        "label": "Comms",
+        "title": "Discipline without the drill",
+        "description": "Clear calls built on habits, not yelling. Average reaction time is under a second while jokes still fly.",
+        "metric": "0.8 s // average response"
+      },
+      "adapt": {
+        "label": "Gameplay",
+        "title": "Lineups that flex in minutes",
+        "description": "Swapping to double supports or triple engineers doesn't require a team meeting. We iterate mid-match.",
+        "metric": "3.2 swaps per match"
+      },
+      "shield": {
+        "label": "Defense",
+        "title": "Chill but stubborn holds",
+        "description": "Utility walls plus calm anchors equals checkpoints that refuse to fall. Math and trust over brute force.",
+        "metric": "87% point hold rate"
+      }
+    }
+  },
+  "team": {
+    "eyebrow": "Core Squad",
+    "title": "People who keep the lobby friendly",
+    "description": "Each operator owns a specialty: tempo, scouting, flank chaos, or morale control. Together it feels like a LAN night.",
+    "fallbacks": {
+      "role": "Operator",
+      "bio": "Dossier is currently redacted."
+    },
+    "members": {
+      "sin": {
+        "name": "Sex Instructor NATO",
+        "role": "Raid lead",
+        "bio": "Sets the tempo, flips from full-send to careful sweep in a sentence and keeps both teams laughing."
+      },
+      "thirteen": {
+        "name": "13th",
+        "role": "Shot caller",
+        "bio": "Lives in voice chat, patches up lost comms and sprinkles sarcasm between map reads."
+      },
+      "satana": {
+        "name": "Satana v Triko",
+        "role": "Flank & sabotage",
+        "bio": "Finds walls on any map, detonates economy plays and somehow appears behind your back with a smile."
+      },
+      "metr": {
+        "name": "Metr Pihalych",
+        "role": "Anchor block",
+        "bio": "Builds unbreakable holds, tracks cooldown cycles and keeps everyone alive through sheer willpower."
+      }
+    }
+  },
+  "events": {
+    "eyebrow": "Next Drops",
+    "title": "Upcoming operations",
+    "description": "Matches, custom lobbies and joint trainings. Calendar stays open so opponents can sync with us.",
+    "loading": "Loading the schedule...",
+    "calendarUnavailable": "Calendar is temporarily unavailable",
+    "error": "Failed to fetch operations",
+    "emptyTitle": "Slots will appear soon",
+    "emptyDescription": "We publish confirmed matches as soon as both teams lock in. Ping us on Discord for priority updates.",
+    "badge": "Locked in",
+    "cta_request": "Request match in Discord",
+    "cta_watch": "Open Google Calendar",
+    "demoNotice": "Demo schedule is shown because the Google Calendar key is missing or inaccessible."
+  },
+  "intel": {
+    "eyebrow": "Live Intel",
+    "title": "Operations briefing",
+    "description": "Quick pulses about scrim results, training focus and community health. Updated after every play session.",
+    "badge": "Online",
+    "metricLabel": "Metric",
+    "status": {
+      "up": "Trending up",
+      "down": "Cooling down",
+      "steady": "Holding steady"
+    },
+    "items": {
+      "ops": {
+        "title": "Win streak",
+        "detail": "Official invasion lobbies cleared without losses. Most teams bow out before wave three.",
+        "value": "12-0",
+        "delta": "+4 week over week",
+        "timestamp": "24 NOV // 23:40"
+      },
+      "scrim": {
+        "title": "Practice nights",
+        "detail": "Every Wednesday is a friendly custom with partner clans. Perfect for testing anti-meta ideas.",
+        "value": "4 sets",
+        "delta": "steady cadence",
+        "timestamp": "24 NOV // 20:10"
+      },
+      "recruits": {
+        "title": "New faces",
+        "detail": "Workshop for new players is live. We take people who hop on comms fast and enjoy feedback.",
+        "value": "+6 candidates",
+        "delta": "2 filtered",
+        "timestamp": "23 NOV // 18:55"
+      },
+      "support": {
+        "title": "Media & vibes",
+        "detail": "Twitch is alive, highlights go to TikTok. We want teams to feel the mood before joining.",
+        "value": "3 channels",
+        "delta": "-1 off week",
+        "timestamp": "22 NOV // 14:20"
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact Command",
+    "title": "Talk to the HQ",
+    "description": "Three shortcuts that reach the officers faster than smoke signals.",
+    "emailLabel": "Email",
+    "discordLabel": "Discord",
+    "regionLabel": "Region",
+    "regionValue": "Europe friendly, open to NA late nights"
+  },
+  "links": {
+    "eyebrow": "Follow Our Operations",
+    "title": "Where to watch BÜRN",
+    "description": "Streams, VODs and a very alive chat. Pick your platform.",
+    "items": {
+      "twitch": "Twitch",
+      "youtube": "YouTube",
+      "x": "X / Twitter",
+      "discord": "Discord",
+      "steam": "Steam",
+      "youtubeShort": "YouTube",
+      "instagram": "Instagram"
+    }
+  },
+  "schedule": {
+    "eyebrow": "Modes & Schedule",
+    "title": "How we queue custom battles",
+    "description": "We keep one primary format, a ready backup, and a transparent prime-time window so opponents instantly see whether we match their roster.",
+    "cta": "See full rulebook",
+    "blocks": {
+      "primary": {
+        "label": "Primary format",
+        "title": "Invasion 50v50",
+        "description": "Two platoons, synchronized drops, vehicle slots negotiated ahead of time. We handle server setup and admin the lobby."
+      },
+      "alt": {
+        "label": "Alt modes",
+        "title": "Territory, RAAS, Skirmish",
+        "description": "If opponents want variety, we rotate through territory control, RAAS mixes, or smaller skirmish nights for new squads."
+      },
+      "support": {
+        "label": "Logistics",
+        "title": "Briefing + debrief",
+        "description": "Shared Google Sheet with factions, FOB plans, and casters if needed. After the match we send timestamps and notes."
+      },
+      "rules": {
+        "label": "Fair play",
+        "title": "Friendly rulebook",
+        "description": "Spawn locking, glitch bans, admin flow — everything condensed on the rules page so there are zero surprises."
+      }
+    }
+  },
+  "rulesPage": {
+    "hero": {
+      "badge": "Updated weekly",
+      "eyebrow": "Friendly Match Charter",
+      "title": "Rules that keep Squad invasion scrims fun and fair",
+      "description": "One page that explains how to book a lobby, what we expect from each side, and how to reach us if something changes mid-match.",
+      "note": "Need a custom clause (mods, observers, different size)? Ping us—we adapt quickly.",
+      "cta_discord": "Ping match officer",
+      "cta_calendar": "View public calendar",
+      "cta_doc": "Download rule doc"
+    },
+    "steps": {
+      "title": "Match flow",
+      "items": {
+        "brief": {
+          "title": "Briefing & booking",
+          "description": "Share roster size, preferred mode, and two potential time slots. We reply with calendar invite and spreadsheet."
+        },
+        "setup": {
+          "title": "Server setup",
+          "description": "We host or co-host. Admin rights get mirrored, password shared 15 minutes prior to match, and spectators assigned."
+        },
+        "play": {
+          "title": "Play & adjust",
+          "description": "Two rounds by default. Tactical pauses allowed for DCs; vehicle swaps locked once live."
+        },
+        "followup": {
+          "title": "Follow-up",
+          "description": "After the lobby we send VOD, timestamps, and quick notes so both squads can iterate."
+        }
+      }
+    },
+    "requirements": {
+      "title": "What we ask from every opponent",
+      "items": {
+        "comms": {
+          "title": "Voice discipline",
+          "description": "At least one English- or Russian-speaking liaison on comms to keep pauses and restarts smooth."
+        },
+        "roster": {
+          "title": "Stable roster",
+          "description": "Confirm final lineup 2 hours before start so we can balance roles and vehicles."
+        },
+        "fair": {
+          "title": "Fair-play mindset",
+          "description": "No exploits, no griefing spawns, respect pauses. Admin calls are final."
+        },
+        "broadcast": {
+          "title": "Streaming notice",
+          "description": "We often stream or record. Let us know if someone in your roster should be hidden."
+        }
+      }
+    },
+    "faq": {
+      "title": "FAQ & quick answers",
+      "items": {
+        "calendar": {
+          "question": "How fast do you confirm a slot?",
+          "answer": "Usually within 12 hours. If it’s urgent, poke us in Discord and we’ll reshuffle practice nights."
+        },
+        "modes": {
+          "question": "Can we change mode on the same day?",
+          "answer": "Yes if both teams agree at least 30 minutes before start. Otherwise мы держим исходный формат."
+        },
+        "observers": {
+          "question": "Do you allow observers or casters?",
+          "answer": "Sure. Мы выдаём отдельные роли и слоты, главное предупредить заранее, чтобы сервер был настроен."
+        }
+      }
+    }
+  },
+  "gallery": {
+    "eyebrow": "Card Swap Gallery",
+    "title": "Scrim snapshots",
+    "description": "A peek at recent friendlies and why teams keep coming back. Hover or tap a card to swap the stack.",
+    "cta": "Request a slot",
+    "placeholder": "Available slot",
+    "media": {
+      "title": "Match gallery",
+      "hint": "Drop your POVs here",
+      "placeholder": "Add clip"
+    },
+    "snapshot": {
+      "title": "Match sheet",
+      "mode": "Mode",
+      "map": "Map",
+      "result": "Score"
+    },
+    "cards": {
+      "harju": {
+        "title": "Harju night rally",
+        "subtitle": "Vs RedFox // 3 rounds",
+        "description": "Full blackout scrim where both squads agreed on no tanks. We rotated support squads through rooftops and secured both uplinks.",
+        "mode": "Invasion · 50v50",
+        "map": "Harju Night",
+        "result": "2-0 sweep"
+      },
+      "mutaha": {
+        "title": "Mutaha bridge hold",
+        "subtitle": "Joint lobby with SunOps",
+        "description": "Objective was to hold the bridge choke for 12 minutes straight. Engineers cycled deployables while recon fed live marks.",
+        "mode": "Territory · 40v40",
+        "map": "Mutaha River",
+        "result": "Lock at +8 tickets"
+      },
+      "fallujah": {
+        "title": "Fallujah rush hour",
+        "subtitle": "Community mix // best of 2",
+        "description": "Fast-paced city push with mixed squads from EU and NA. We swapped leads mid-round and still squeezed out both caps.",
+        "mode": "Invasion · 50v50",
+        "map": "Fallujah",
+        "result": "Win 3-1"
+      }
+    }
+  },
+  "navMenu": {
+    "hero": "Hero",
+    "highlights": "Highlights",
+    "events": "Events",
+    "gallery": "Gallery",
+    "schedule": "Schedule",
+    "contact": "Contact",
+    "rules": "Rules"
+  }
+}
+
