@@ -47,18 +47,18 @@ export default async function LocaleLayout({ children, params }: Props) {
             <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
               <Link
                 href="/"
-                className="flex items-center gap-2 text-sm uppercase tracking-[0.4em] text-muted-foreground hover:text-foreground transition-colors"
+                className="flex items-center gap-2 text-sm uppercase tracking-[0.4em] text-muted-foreground transition-colors hover:text-foreground"
               >
                 <Flame className="h-4 w-4 text-primary" />
                 <span>BÜRN</span>
               </Link>
-              <nav className="hidden items-center gap-4 text-xs uppercase tracking-[0.3em] text-muted-foreground md:flex">
+              <nav className="hidden items-center gap-4 text-[11px] uppercase tracking-[0.35em] text-muted-foreground md:flex">
                 {navLinks.map((item) =>
                   item.type === "anchor" ? (
                     <a
                       key={item.href}
                       href={item.href}
-                      className="hover:text-foreground transition-colors"
+                      className="transition-colors hover:text-foreground"
                     >
                       {item.label}
                     </a>
@@ -66,7 +66,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="hover:text-foreground transition-colors"
+                      className="transition-colors hover:text-foreground"
                     >
                       {item.label}
                     </Link>
