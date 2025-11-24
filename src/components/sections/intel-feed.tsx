@@ -59,35 +59,35 @@ export async function IntelFeedSection({ intel }: IntelFeedSectionProps) {
             return (
               <Card
                 key={item.id}
-                className="p-6 h-full border border-border/70 bg-card/90 backdrop-blur"
+                className="p-6 h-full border border-border/70 bg-card/90 backdrop-blur transition-all duration-500 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 hover:scale-[1.02] group"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <div className="space-y-2">
+                  <div className="space-y-2 flex-1">
                     <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                       {t(`${baseKey}.timestamp`)}
                     </p>
-                    <h3 className="text-xl font-semibold text-foreground">
+                    <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                       {t(`${baseKey}.title`)}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       {t(`${baseKey}.detail`)}
                     </p>
                   </div>
-                  <Badge variant="secondary">{t("badge")}</Badge>
+                  <Badge variant="secondary" className="transition-all duration-300 group-hover:scale-110">{t("badge")}</Badge>
                 </div>
 
                 <div className="mt-6 flex flex-wrap items-end gap-4">
-                  <div>
+                  <div className="flex-1">
                     <p className="text-sm uppercase text-muted-foreground">
                       {t("metricLabel")}
                     </p>
-                    <p className="text-4xl font-bold text-foreground">
+                    <p className="text-4xl font-bold text-foreground transition-all duration-300 group-hover:scale-110 inline-block">
                       {t(`${baseKey}.value`)}
                     </p>
                   </div>
                   <div className="flex items-center gap-2 font-medium">
-                    <span className={deltaColor}>{t(`${baseKey}.delta`)}</span>
-                    <span className={`flex items-center gap-1 ${deltaColor}`}>
+                    <span className={`${deltaColor} transition-all duration-300 group-hover:scale-105`}>{t(`${baseKey}.delta`)}</span>
+                    <span className={`flex items-center gap-1 ${deltaColor} transition-all duration-300 group-hover:scale-110`}>
                       {statusToken.icon}
                       {t(`status.${item.status}`)}
                     </span>

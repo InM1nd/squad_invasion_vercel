@@ -9,6 +9,7 @@ export interface TargetCursorProps {
   hideDefaultCursor?: boolean;
   hoverDuration?: number;
   parallaxOn?: boolean;
+  containerSelector?: string;
 }
 
 export function TargetCursor({
@@ -17,6 +18,7 @@ export function TargetCursor({
   hideDefaultCursor = true,
   hoverDuration = 0.2,
   parallaxOn = true,
+  containerSelector,
 }: TargetCursorProps) {
   const cursorRef = useRef<HTMLDivElement>(null);
   const cornersRef = useRef<NodeListOf<HTMLDivElement> | null>(null);
@@ -70,6 +72,10 @@ export function TargetCursor({
       return;
     }
 
+    const container = containerSelector
+      ? document.querySelector(containerSelector)
+      : null;
+
     const originalCursor = document.body.style.cursor;
     if (hideDefaultCursor) {
       document.body.style.cursor = "none";
@@ -81,6 +87,9 @@ export function TargetCursor({
     let activeTarget: Element | null = null;
     let currentLeaveHandler: (() => void) | null = null;
     let resumeTimeout: ReturnType<typeof setTimeout> | null = null;
+    let lastMouseX = window.innerWidth / 2;
+    let lastMouseY = window.innerHeight / 2;
+    let isInsideContainer = false;
 
     const cleanupTarget = (target: Element) => {
       if (currentLeaveHandler) {
@@ -92,8 +101,9 @@ export function TargetCursor({
     gsap.set(cursor, {
       xPercent: -50,
       yPercent: -50,
-      x: window.innerWidth / 2,
-      y: window.innerHeight / 2,
+      x: lastMouseX,
+      y: lastMouseY,
+      opacity: container ? 0 : 1,
     });
 
     const createSpinTimeline = () => {
@@ -116,8 +126,8 @@ export function TargetCursor({
       }
       const strength = activeStrengthRef.current.current;
       if (strength === 0) return;
-      const cursorX = gsap.getProperty(cursorRef.current, "x") as number;
-      const cursorY = gsap.getProperty(cursorRef.current, "y") as number;
+      const cursorX = lastMouseX;
+      const cursorY = lastMouseY;
       const corners = Array.from(cornersRef.current);
       corners.forEach((corner, i) => {
         const currentX = gsap.getProperty(corner, "x") as number;
@@ -138,14 +148,40 @@ export function TargetCursor({
     };
     tickerFnRef.current = tickerFn;
 
-    const moveHandler = (e: MouseEvent) => moveCursor(e.clientX, e.clientY);
+    const moveHandler = (e: MouseEvent) => {
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+      
+      // Check if mouse is inside container
+      if (container) {
+        const rect = container.getBoundingClientRect();
+        isInsideContainer =
+          e.clientX >= rect.left &&
+          e.clientX <= rect.right &&
+          e.clientY >= rect.top &&
+          e.clientY <= rect.bottom;
+        
+        // Show cursor if inside container (always visible in container area)
+        if (isInsideContainer) {
+          gsap.set(cursor, { opacity: 1 });
+          moveCursor(e.clientX, e.clientY);
+        } else {
+          gsap.set(cursor, { opacity: 0 });
+          if (activeTarget) {
+            currentLeaveHandler?.();
+          }
+          // Still move cursor to keep it in sync, but hidden
+          moveCursor(e.clientX, e.clientY);
+        }
+      } else {
+        moveCursor(e.clientX, e.clientY);
+      }
+    };
     window.addEventListener("mousemove", moveHandler);
 
     const scrollHandler = () => {
       if (!activeTarget || !cursorRef.current) return;
-      const mouseX = gsap.getProperty(cursorRef.current, "x") as number;
-      const mouseY = gsap.getProperty(cursorRef.current, "y") as number;
-      const elementUnderMouse = document.elementFromPoint(mouseX, mouseY);
+      const elementUnderMouse = document.elementFromPoint(lastMouseX, lastMouseY);
       const isStillOverTarget =
         elementUnderMouse &&
         (elementUnderMouse === activeTarget ||
@@ -170,12 +206,20 @@ export function TargetCursor({
     window.addEventListener("mouseup", mouseUpHandler);
 
     const enterHandler = (e: MouseEvent) => {
+      // If container is specified, only work inside it
+      if (container && !isInsideContainer) {
+        return;
+      }
+      
       const directTarget = e.target as Element;
       const allTargets: Element[] = [];
       let current: Element | null = directTarget;
       while (current && current !== document.body) {
+        // Also check if target is inside container
         if (current.matches(targetSelector)) {
-          allTargets.push(current);
+          if (!container || container.contains(current)) {
+            allTargets.push(current);
+          }
         }
         current = current.parentElement;
       }
@@ -201,8 +245,8 @@ export function TargetCursor({
 
       const rect = target.getBoundingClientRect();
       const { borderWidth, cornerSize } = constants;
-      const cursorX = gsap.getProperty(cursorRef.current, "x") as number;
-      const cursorY = gsap.getProperty(cursorRef.current, "y") as number;
+      const cursorX = lastMouseX;
+      const cursorY = lastMouseY;
 
       targetCornerPositionsRef.current = [
         { x: rect.left - borderWidth, y: rect.top - borderWidth },
@@ -329,6 +373,7 @@ export function TargetCursor({
     isMobile,
     hoverDuration,
     parallaxOn,
+    containerSelector,
   ]);
 
   useEffect(() => {

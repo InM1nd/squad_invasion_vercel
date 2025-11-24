@@ -1,6 +1,8 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import {
   CheckCircle2,
   Headphones,
@@ -11,6 +13,8 @@ import {
   CalendarDays,
   FileText,
 } from "lucide-react";
+import { AnimatedCard } from "@/components/rules/animated-card";
+import { useEffect, useState } from "react";
 
 const stepKeys = ["brief", "setup", "play", "followup"] as const;
 
@@ -23,16 +27,23 @@ const requirementItems = [
 
 const faqKeys = ["calendar", "modes", "observers"] as const;
 
-export default async function RulesPage() {
-  const t = await getTranslations("rulesPage");
-  const calendarId = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID;
-  const calendarHref = calendarId
-    ? `https://calendar.google.com/calendar/embed?src=${encodeURIComponent(calendarId)}`
-    : "https://calendar.google.com";
+export default function RulesPage() {
+  const t = useTranslations("rulesPage");
+  const [calendarHref, setCalendarHref] = useState("https://calendar.google.com");
+
+  useEffect(() => {
+    const calendarId = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID;
+    if (calendarId) {
+      setCalendarHref(
+        `https://calendar.google.com/calendar/embed?src=${encodeURIComponent(calendarId)}`
+      );
+    }
+  }, []);
 
   return (
     <div className="space-y-12 pb-10">
-      <section className="rounded-[36px] border bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 p-10 text-white shadow-2xl">
+      <AnimatedCard delay={0}>
+        <section className="rounded-[36px] border bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 p-10 text-white shadow-2xl transition-all duration-500 hover:shadow-rose-500/20">
         <div className="space-y-6 max-w-4xl">
           <div className="inline-flex items-center rounded-full border border-white/20 px-4 py-1 text-xs uppercase tracking-[0.4em] text-white/70">
             {t("hero.badge")}
@@ -65,19 +76,25 @@ export default async function RulesPage() {
           </div>
         </div>
       </section>
+      </AnimatedCard>
 
-      <section className="space-y-6">
-        <div className="space-y-2 text-center">
-          <p className="text-sm uppercase tracking-[0.4em] text-muted-foreground">
-            {t("steps.title")}
-          </p>
-          <h2 className="text-3xl font-bold text-foreground">
-            {t("steps.title")}
-          </h2>
-        </div>
+      <AnimatedCard delay={200}>
+        <section className="space-y-6">
+          <div className="space-y-2 text-center">
+            <p className="text-sm uppercase tracking-[0.4em] text-muted-foreground">
+              {t("steps.title")}
+            </p>
+            <h2 className="text-3xl font-bold text-foreground">
+              {t("steps.title")}
+            </h2>
+          </div>
         <div className="grid gap-4 md:grid-cols-2">
           {stepKeys.map((key, index) => (
-            <Card key={key} className="p-6 space-y-3 border border-border/70">
+            <Card
+              key={key}
+              className="p-6 space-y-3 border border-border/70 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:scale-[1.02]"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
               <div className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.3em] text-muted-foreground">
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-primary">
                   {index + 1}
@@ -93,22 +110,28 @@ export default async function RulesPage() {
             </Card>
           ))}
         </div>
-      </section>
+        </section>
+      </AnimatedCard>
 
-      <section className="space-y-6">
-        <div className="space-y-2 text-center">
-          <p className="text-sm uppercase tracking-[0.4em] text-muted-foreground">
-            {t("requirements.title")}
-          </p>
-          <h2 className="text-3xl font-bold text-foreground">
-            {t("requirements.title")}
-          </h2>
-        </div>
+      <AnimatedCard delay={400}>
+        <section className="space-y-6">
+          <div className="space-y-2 text-center">
+            <p className="text-sm uppercase tracking-[0.4em] text-muted-foreground">
+              {t("requirements.title")}
+            </p>
+            <h2 className="text-3xl font-bold text-foreground">
+              {t("requirements.title")}
+            </h2>
+          </div>
         <div className="grid gap-4 md:grid-cols-2">
-          {requirementItems.map(({ key, icon: Icon }) => (
-            <Card key={key} className="flex flex-col gap-4 border border-border/70 p-6">
+          {requirementItems.map(({ key, icon: Icon }, index) => (
+            <Card
+              key={key}
+              className="flex flex-col gap-4 border border-border/70 p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:scale-[1.02] group"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
               <div className="flex items-center gap-3 text-primary">
-                <Icon className="h-5 w-5" />
+                <Icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" />
                 <p className="text-xs uppercase tracking-[0.3em]">
                   {t(`requirements.items.${key}.title`)}
                 </p>
@@ -119,17 +142,23 @@ export default async function RulesPage() {
             </Card>
           ))}
         </div>
-      </section>
+        </section>
+      </AnimatedCard>
 
-      <section className="space-y-6">
-        <div className="space-y-2 text-center">
-          <p className="text-sm uppercase tracking-[0.4em] text-muted-foreground">
-            {t("faq.title")}
-          </p>
-        </div>
+      <AnimatedCard delay={600}>
+        <section className="space-y-6">
+          <div className="space-y-2 text-center">
+            <p className="text-sm uppercase tracking-[0.4em] text-muted-foreground">
+              {t("faq.title")}
+            </p>
+          </div>
         <div className="space-y-4">
-          {faqKeys.map((key) => (
-            <Card key={key} className="space-y-3 border border-border/70 p-5">
+          {faqKeys.map((key, index) => (
+            <Card
+              key={key}
+              className="space-y-3 border border-border/70 p-5 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:scale-[1.01]"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
               <div className="flex items-center gap-2 text-foreground">
                 <CheckCircle2 className="h-4 w-4 text-primary" />
                 <h3 className="text-lg font-semibold">
@@ -143,8 +172,10 @@ export default async function RulesPage() {
           ))}
         </div>
       </section>
+      </AnimatedCard>
 
-      <section className="rounded-[32px] border bg-card/90 p-6 shadow-lg">
+      <AnimatedCard delay={800}>
+        <section className="rounded-[32px] border bg-card/90 p-6 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.01]">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-lg font-semibold text-foreground">
@@ -176,6 +207,7 @@ export default async function RulesPage() {
           </div>
         </div>
       </section>
+      </AnimatedCard>
     </div>
   );
 }

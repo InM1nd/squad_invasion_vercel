@@ -25,32 +25,32 @@ export function EventsSection() {
   const [error, setError] = useState<string | null>(null);
   const [usingDemo, setUsingDemo] = useState(false);
 
-  const demoEvents: EventItem[] = [
-    {
-      id: "demo-1",
-      title: "Harju Night Invasion // EU Prime",
-      date: new Date(Date.now() + 86400000).toISOString(),
-      time: "19:00 UTC",
-      location: "Private server",
-    },
-    {
-      id: "demo-2",
-      title: "Territory scrim vs SunOps",
-      date: new Date(Date.now() + 2 * 86400000).toISOString(),
-      time: "20:30 UTC",
-      location: "Custom lobby",
-    },
-    {
-      id: "demo-3",
-      title: "NA-friendly practice set",
-      date: new Date(Date.now() + 4 * 86400000).toISOString(),
-      time: "02:00 UTC",
-      location: "Discord coordination",
-    },
-  ];
-
   useEffect(() => {
     async function fetchEvents() {
+      const demoEvents: EventItem[] = [
+        {
+          id: "demo-1",
+          title: "Harju Night Invasion // EU Prime",
+          date: new Date(Date.now() + 86400000).toISOString(),
+          time: "19:00 UTC",
+          location: "Private server",
+        },
+        {
+          id: "demo-2",
+          title: "Territory scrim vs SunOps",
+          date: new Date(Date.now() + 2 * 86400000).toISOString(),
+          time: "20:30 UTC",
+          location: "Custom lobby",
+        },
+        {
+          id: "demo-3",
+          title: "NA-friendly practice set",
+          date: new Date(Date.now() + 4 * 86400000).toISOString(),
+          time: "02:00 UTC",
+          location: "Discord coordination",
+        },
+      ];
+
       if (!API_KEY || !CALENDAR_ID) {
         setUsingDemo(true);
         setEvents(demoEvents);
@@ -117,10 +117,6 @@ export function EventsSection() {
                 {t("cta_request")}
               </a>
             </Button>
-            <Button variant="secondary" disabled>
-              <Calendar className="mr-2 h-4 w-4" />
-              {t("cta_watch")}
-            </Button>
           </div>
         </Card>
       );
@@ -158,29 +154,30 @@ export function EventsSection() {
       return (
         <Card
           key={event.id}
-          className="p-6 border border-border/70 hover:border-primary/40 transition-all duration-200 bg-card/90 backdrop-blur"
+          className="p-6 border border-border/70 hover:border-primary/40 transition-all duration-300 bg-card/90 backdrop-blur hover:shadow-xl hover:shadow-primary/5 hover:scale-[1.02] group relative overflow-hidden"
         >
-          <div className="flex flex-col sm:flex-row flex-wrap gap-6 items-start sm:items-center">
-            <div className="flex-shrink-0">
-              <div className="flex flex-col items-center justify-center w-16 h-16 rounded-2xl bg-primary text-primary-foreground shadow-lg shadow-primary/30">
+          <div className="absolute inset-0 bg-linear-to-br from-primary/0 via-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:via-primary/2 group-hover:to-primary/5 transition-all duration-300" />
+          <div className="relative z-10 flex flex-col sm:flex-row flex-wrap gap-6 items-start sm:items-center">
+            <div className="shrink-0">
+              <div className="flex flex-col items-center justify-center w-16 h-16 rounded-2xl bg-primary text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-300 group-hover:scale-110 group-hover:shadow-primary/50">
                 <span className="text-xs font-medium uppercase">{month}</span>
                 <span className="text-2xl font-bold">{day}</span>
               </div>
             </div>
 
             <div className="flex-1 space-y-2">
-              <h3 className="text-lg md:text-xl font-semibold text-foreground">
+              <h3 className="text-lg md:text-xl font-semibold text-foreground transition-colors duration-300 group-hover:text-primary">
                 {event.title}
               </h3>
               <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
                 {event.time && (
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 transition-colors duration-300 group-hover:text-foreground">
                     <Clock className="h-4 w-4" />
                     <span>{event.time}</span>
                   </div>
                 )}
                 {event.location && (
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 transition-colors duration-300 group-hover:text-foreground">
                     <MapPin className="h-4 w-4" />
                     <span>{event.location}</span>
                   </div>
@@ -188,7 +185,7 @@ export function EventsSection() {
               </div>
             </div>
 
-            <Badge variant="secondary" className="self-start sm:self-center gap-1">
+            <Badge variant="secondary" className="self-start sm:self-center gap-1 transition-all duration-300 group-hover:scale-110">
               <Calendar className="h-3 w-3" />
               {t("badge")}
             </Badge>
@@ -218,12 +215,6 @@ export function EventsSection() {
               <a href="https://discord.gg/9w4N777V" target="_blank" rel="noreferrer">
                 <MessageSquare className="mr-2 h-4 w-4" />
                 {t("cta_request")}
-              </a>
-            </Button>
-            <Button variant="outline" asChild>
-              <a href={`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(CALENDAR_ID ?? "")}`} target="_blank" rel="noreferrer">
-                <Calendar className="mr-2 h-4 w-4" />
-                {t("cta_watch")}
               </a>
             </Button>
           </div>

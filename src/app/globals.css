@@ -118,7 +118,15 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Hide default cursor only in gallery grid */
+#gallery-grid {
+  cursor: none !important;
 }
