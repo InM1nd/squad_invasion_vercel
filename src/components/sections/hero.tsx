@@ -50,7 +50,7 @@ export async function HeroSection() {
 
   return (
     <section id="hero" className="py-12 md:py-16">
-      <div className="relative overflow-hidden rounded-[32px] border bg-gradient-to-br from-zinc-50 via-white to-rose-50 text-zinc-900 dark:from-zinc-950 dark:via-black dark:to-zinc-900">
+      <div className="relative overflow-hidden rounded-[32px] border bg-gradient-to-br from-zinc-50 via-white to-rose-50 text-zinc-900 dark:from-zinc-950 dark:via-black dark:to-zinc-900 group">
         <div
           className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(244,63,94,0.15),_transparent_60%)]"
           aria-hidden="true"
@@ -78,12 +78,13 @@ export async function HeroSection() {
               </div>
 
               <div className="flex flex-wrap gap-3">
-                {callouts.map((callout) => (
+                {callouts.map((callout, index) => (
                   <span
                     key={callout}
-                    className="inline-flex items-center gap-2 rounded-full border border-zinc-200/80 bg-white/70 px-4 py-2 text-sm text-zinc-700 dark:border-white/20 dark:bg-white/10 dark:text-white/80"
+                    className="inline-flex items-center gap-2 rounded-full border border-zinc-200/80 bg-white/70 px-4 py-2 text-sm text-zinc-700 dark:border-white/20 dark:bg-white/10 dark:text-white/80 transition-all duration-300 hover:scale-105 hover:shadow-md hover:border-primary/40"
+                    style={{ animationDelay: `${index * 100}ms` }}
                   >
-                    <Sparkles className="h-4 w-4" />
+                    <Sparkles className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
                     {callout}
                   </span>
                 ))}
@@ -112,8 +113,8 @@ export async function HeroSection() {
 
             <div className="flex-shrink-0 w-full lg:w-72 xl:w-80">
               <div className="relative">
-                <div className="absolute inset-0 bg-rose-200/40 dark:bg-rose-500/30 blur-3xl" />
-                <div className="relative rounded-3xl border border-white/40 bg-white/80 p-6 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-white/5">
+                <div className="absolute inset-0 bg-rose-200/40 dark:bg-rose-500/30 blur-3xl transition-all duration-500 group-hover:bg-rose-300/50 dark:group-hover:bg-rose-500/40" />
+                <div className="relative rounded-3xl border border-white/40 bg-white/80 p-6 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-white/5 transition-all duration-500 hover:scale-[1.02] hover:shadow-rose-500/20">
                   <div className="flex items-center gap-4">
                     <div className="h-20 w-20 overflow-hidden rounded-2xl border border-white/30 shadow-lg">
                       <Image
@@ -149,10 +150,11 @@ export async function HeroSection() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-zinc-600 dark:text-white/70">
-            {glanceCards.map((item) => (
+            {glanceCards.map((item, index) => (
               <div
                 key={item.label}
-                className="rounded-2xl border bg-white/80 p-4 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5"
+                className="rounded-2xl border bg-white/80 p-4 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-primary/40 hover:bg-white/90 dark:hover:bg-white/10"
+                style={{ animationDelay: `${index * 150}ms` }}
               >
                 <p className="text-sm uppercase text-zinc-500 dark:text-white/60">{item.label}</p>
                 <p className="text-lg font-semibold text-zinc-900 dark:text-white">{item.value}</p>

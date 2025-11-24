@@ -50,7 +50,7 @@ export async function LinksSection({ links }: LinksSectionProps) {
                 key={link.id}
                 variant="outline"
                 size="icon"
-                className="rounded-lg"
+                className="rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20 hover:border-primary/40 group relative overflow-hidden"
                 asChild
               >
                 <a
@@ -59,7 +59,8 @@ export async function LinksSection({ links }: LinksSectionProps) {
                   rel="noopener noreferrer"
                   aria-label={label}
                 >
-                  <Icon className="h-6 w-6" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 group-hover:from-primary/10 group-hover:via-primary/5 group-hover:to-primary/10 transition-all duration-300" />
+                  <Icon className="h-6 w-6 relative z-10 transition-transform duration-300 group-hover:scale-110" />
                 </a>
               </Button>
             );

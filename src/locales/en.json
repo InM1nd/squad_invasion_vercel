@@ -275,11 +275,11 @@
         },
         "modes": {
           "question": "Can we change mode on the same day?",
-          "answer": "Yes if both teams agree at least 30 minutes before start. Otherwise мы держим исходный формат."
+          "answer": "Yes if both teams agree at least 30 minutes before start. Otherwise we stick to the original format."
         },
         "observers": {
           "question": "Do you allow observers or casters?",
-          "answer": "Sure. Мы выдаём отдельные роли и слоты, главное предупредить заранее, чтобы сервер был настроен."
+          "answer": "Sure. We provide separate roles and slots, just let us know in advance so the server is configured."
         }
       }
     }
@@ -335,7 +335,135 @@
     "gallery": "Gallery",
     "schedule": "Schedule",
     "contact": "Contact",
-    "rules": "Rules"
+    "rules": "Rules",
+    "roadmap": "Roadmap"
+  },
+  "roadmapPage": {
+    "hero": {
+      "badge": "Development Plan",
+      "title": "Squad Invasion Platform Roadmap",
+      "description": "Detailed plan for scaling the landing page into a full-featured platform for organizing custom events, managing clans, and tracking statistics."
+    },
+    "phases": {
+      "title": "Development Phases",
+      "description": "Step-by-step platform development plan with feature prioritization",
+      "completed": "Completed",
+      "features": "Key Features",
+      "items": {
+        "phase0": {
+          "title": "Phase 0: Infrastructure Setup",
+          "duration": "2-3 weeks",
+          "description": "Database setup, authentication, and basic infrastructure for scaling.",
+          "features": [
+            "Supabase project setup",
+            "Drizzle schema expansion",
+            "Supabase Auth or NextAuth.js configuration",
+            "Basic API routes creation",
+            "CI/CD pipeline setup"
+          ]
+        },
+        "phase1": {
+          "title": "Phase 1: MVP - Basic Platform",
+          "duration": "6-8 weeks",
+          "description": "Minimum viable product for event organization with authentication and basic management.",
+          "features": [
+            "Authentication (Steam, Discord OAuth)",
+            "Basic player profile",
+            "Event creation and management",
+            "Event registration",
+            "Enhanced calendar"
+          ]
+        },
+        "phase2": {
+          "title": "Phase 2: v1.0 - Clans and Teams",
+          "duration": "4-6 weeks",
+          "description": "Adding clan system, team registration, and basic statistics.",
+          "features": [
+            "Clan creation and management",
+            "Role system (leader, officer, member)",
+            "Team registration for events",
+            "Automatic team formation",
+            "Basic player and clan statistics"
+          ]
+        },
+        "phase3": {
+          "title": "Phase 3: v1.5 - Planning and Notes",
+          "duration": "3-4 weeks",
+          "description": "Tactical planning tools with personal and shared notes.",
+          "features": [
+            "Personal notes",
+            "Shared notes for clans",
+            "Tactical plan templates",
+            "Note linking to events",
+            "Note export"
+          ]
+        },
+        "phase4": {
+          "title": "Phase 4: v2.0 - Leaderboards and Statistics",
+          "duration": "4-5 weeks",
+          "description": "Competitive elements with rating system, leaderboards, and advanced analytics.",
+          "features": [
+            "Rating system (ELO)",
+            "Global leaderboards",
+            "Seasonal leaderboards",
+            "Detailed event statistics",
+            "Progress charts"
+          ]
+        },
+        "phase5": {
+          "title": "Phase 5: v2.5 - Communication and Notifications",
+          "duration": "3-4 weeks",
+          "description": "Improved user interaction through notifications and built-in communication.",
+          "features": [
+            "Notification system (email, push)",
+            "Built-in messaging",
+            "Event comments",
+            "Team/clan chats",
+            "Basic moderation"
+          ]
+        },
+        "phase6": {
+          "title": "Phase 6: v3.0 - Advanced Features",
+          "duration": "5-6 weeks",
+          "description": "Adding matchmaking, advanced analytics, and additional features.",
+          "features": [
+            "Automatic matchmaking",
+            "Analytics and reports",
+            "Achievement system",
+            "Screenshot/video gallery",
+            "Referral program"
+          ]
+        }
+      }
+    },
+    "timeline": {
+      "title": "Timeline",
+      "description": "Overall development time estimate and required resources",
+      "total": "Total Time",
+      "estimate": "23-30 weeks (5.5-7.5 months)",
+      "team": {
+        "title": "Team",
+        "developers": "1-2 Full-stack developers",
+        "designer": "1 UI/UX designer (part-time)",
+        "devops": "1 DevOps (part-time)"
+      },
+      "metrics": {
+        "title": "Success Metrics",
+        "mvp": "100+ users, 10+ events/month",
+        "v1": "20+ active clans",
+        "v2": "500+ active users"
+      }
+    },
+    "tech": {
+      "title": "Technology Stack",
+      "description": "Technologies and integrations used",
+      "stack": {
+        "title": "Core Stack"
+      },
+      "integrations": {
+        "title": "Integrations"
+      }
+    }
   }
 }
 

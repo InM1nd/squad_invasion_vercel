@@ -1,12 +1,11 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import type { LucideIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
-interface HighlightCardProps {
+export interface HighlightCardProps {
   id: string;
   translationKey: string;
-  icon: LucideIcon;
+  iconName: string;
   accent?: "violet" | "cyan" | "amber";
 }
 
@@ -40,12 +39,11 @@ export async function HighlightsSection({ cards }: HighlightsSectionProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {cards.map((card) => {
-            const Icon = card.icon;
             const baseKey = `${card.translationKey}`;
             return (
               <Card
                 key={card.id}
-                className="relative overflow-hidden h-full border border-border/70 bg-card/90 backdrop-blur"
+                className="relative overflow-hidden h-full border border-border/70 bg-card/90 backdrop-blur transition-all duration-500 hover:border-primary/60 hover:shadow-xl hover:shadow-primary/5 hover:scale-[1.02] group"
               >
                 <div
                   className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${
@@ -58,8 +56,8 @@ export async function HighlightsSection({ cards }: HighlightsSectionProps) {
                     <Badge variant="outline" className="uppercase tracking-wide">
                       {t(`${baseKey}.label`)}
                     </Badge>
-                    <div className="h-11 w-11 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-                      <Icon className="h-5 w-5" />
+                    <div className="h-11 w-11 rounded-full bg-primary/10 text-primary flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:bg-primary/20">
+                      {/* Icon will be rendered in client component */}
                     </div>
                   </div>
                   <div className="space-y-2">

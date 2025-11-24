@@ -21,8 +21,9 @@ export function LanguageSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" aria-label={t("language")}>
+        <Button variant="outline" size="sm" className="gap-2" aria-label={t("language")}>
           <Languages className="h-[1.2rem] w-[1.2rem]" />
+          <span className="text-xs font-medium">{locale.toUpperCase()}</span>
           <span className="sr-only">{t("language")}</span>
         </Button>
       </DropdownMenuTrigger>
@@ -30,11 +31,9 @@ export function LanguageSwitcher() {
         {locales.map((value) => (
           <DropdownMenuItem
             key={value}
-            onClick={() =>
-              router.replace(pathname, {
-                locale: value as (typeof locales)[number],
-              })
-            }
+            onClick={() => {
+              router.push(pathname, { locale: value });
+            }}
             className={value === locale ? "font-semibold" : undefined}
           >
             {value.toUpperCase()}

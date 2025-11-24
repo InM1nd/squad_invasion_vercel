@@ -36,7 +36,6 @@ export function GallerySection({ items }: GallerySectionProps) {
   );
 
   const [activeId, setActiveId] = useState(safeItems[0].id);
-  const [cursorActive, setCursorActive] = useState(false);
 
   const activeItem =
     safeItems.find((card) => card.id === activeId) ?? safeItems[0];
@@ -54,14 +53,13 @@ export function GallerySection({ items }: GallerySectionProps) {
 
   return (
     <section id="gallery" className="py-12 md:py-16">
-      {cursorActive ? (
-        <TargetCursor
-          targetSelector=".gallery-target"
-          spinDuration={3}
-          hoverDuration={0.3}
-          hideDefaultCursor
-        />
-      ) : null}
+      <TargetCursor
+        targetSelector=".gallery-target"
+        containerSelector="#gallery-grid"
+        spinDuration={3}
+        hoverDuration={0.3}
+        hideDefaultCursor={false}
+      />
       <div className="max-w-6xl mx-auto space-y-10">
         <div className="flex flex-col gap-6 text-left">
           <div className="space-y-3 md:self-start">
@@ -141,12 +139,8 @@ export function GallerySection({ items }: GallerySectionProps) {
             </div>
           </div>
 
-          <div
-            className="relative rounded-[36px] border bg-muted/20 p-6 shadow-inner"
-            onMouseEnter={() => setCursorActive(true)}
-            onMouseLeave={() => setCursorActive(false)}
-          >
-            <div className="grid grid-cols-4 grid-rows-3 gap-3">
+          <div className="relative rounded-[36px] border bg-muted/20 p-6 shadow-inner">
+            <div id="gallery-grid" className="grid grid-cols-4 grid-rows-3 gap-3">
               {gridCells.map((cell, index) => {
                 const isActive = cell?.id === activeItem.id;
                 return (

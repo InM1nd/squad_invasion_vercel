@@ -33,10 +33,10 @@ export async function TeamSection({ members }: TeamSectionProps) {
               return (
                 <Card
                   key={member.id}
-                  className="p-6 h-full border border-border/60 bg-background/80 hover:border-primary/40 transition-all duration-200"
+                  className="p-6 h-full border border-border/60 bg-background/80 hover:border-primary/40 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 group"
                 >
                   <div className="flex flex-col items-center text-center space-y-4">
-                    <Avatar className="h-20 w-20 shadow-lg shadow-primary/20">
+                    <Avatar className="h-20 w-20 shadow-lg shadow-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:shadow-primary/40">
                       <AvatarFallback className="bg-gradient-to-br from-primary to-primary/70 text-primary-foreground text-xl font-semibold">
                         {member.initials}
                       </AvatarFallback>

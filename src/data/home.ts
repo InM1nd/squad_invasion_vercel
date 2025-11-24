@@ -39,19 +39,19 @@ export const highlightCards = [
   {
     id: "discipline",
     translationKey: "cards.discipline",
-    icon: Waves,
+    iconName: "Waves",
     accent: "cyan" as const,
   },
   {
     id: "adapt",
     translationKey: "cards.adapt",
-    icon: Zap,
+    iconName: "Zap",
     accent: "amber" as const,
   },
   {
     id: "shield",
     translationKey: "cards.shield",
-    icon: ShieldCheck,
+    iconName: "ShieldCheck",
     accent: "violet" as const,
   },
 ];
