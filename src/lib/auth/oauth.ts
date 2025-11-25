@@ -17,9 +17,16 @@ export async function signInWithOAuth(
   redirectTo: string = window.location.origin,
   locale: string = "ru"
 ) {
+  // Steam uses custom OpenID flow, not Supabase OAuth
+  if (provider === "steam") {
+    const currentPath = window.location.pathname;
+    const steamAuthUrl = `/api/auth/steam?returnTo=${encodeURIComponent(currentPath)}`;
+    window.location.href = steamAuthUrl;
+    return;
+  }
+
+  // Discord uses Supabase OAuth
   const supabase = createClient();
-  
-  // Get current pathname for redirect after auth
   const currentPath = window.location.pathname;
   
   const { data, error } = await supabase.auth.signInWithOAuth({

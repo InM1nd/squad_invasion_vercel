@@ -2,13 +2,23 @@
 
 ## Steam OAuth
 
-1. Перейдите в Supabase Dashboard → Authentication → Providers
-2. Найдите "Steam" в списке провайдеров
-3. Включите провайдер
-4. Настройте:
-   - **Steam Web API Key**: Получите на https://steamcommunity.com/dev/apikey
-   - **Redirect URL**: `https://vpzvmmsenskreznshevf.supabase.co/auth/v1/callback`
-5. Сохраните настройки
+**Важно:** Steam не поддерживается напрямую в Supabase, так как использует OpenID 2.0 вместо OAuth 2.0.
+
+Реализован кастомный Steam OAuth через OpenID 2.0:
+
+1. **Получите Steam Web API Key** (опционально, для получения дополнительной информации о пользователе):
+   - Перейдите на https://steamcommunity.com/dev/apikey
+   - Создайте API ключ
+   - Добавьте в `.env.local`: `STEAM_API_KEY=your-api-key`
+
+2. **Настройка не требуется в Supabase Dashboard** - Steam обрабатывается через кастомный API route
+
+3. **Flow работы:**
+   - Пользователь нажимает "Войти через Steam"
+   - Перенаправляется на Steam для авторизации
+   - Steam возвращает на `/api/auth/steam/callback`
+   - Система создает пользователя в Supabase Auth и таблице `users`
+   - Пользователь автоматически входит в систему
 
 ## Discord OAuth
 
@@ -31,11 +41,13 @@
 Убедитесь, что в Supabase Dashboard → Authentication → URL Configuration добавлены:
 
 - **Site URL**: `http://localhost:3000` (для разработки)
-- **Redirect URLs**:
+- **Redirect URLs** (для Discord):
   - `http://localhost:3000/ru/auth/callback`
   - `http://localhost:3000/en/auth/callback`
   - `https://yourdomain.com/ru/auth/callback` (для продакшена)
   - `https://yourdomain.com/en/auth/callback` (для продакшена)
+
+**Примечание:** Steam не требует настройки в Supabase, так как использует кастомный OpenID flow.
 
 ## Использование в коде
 
@@ -47,7 +59,7 @@
 import { OAuthButtons } from "@/components/auth/oauth-buttons";
 
 // В вашем компоненте
-<OAuthButtons redirectTo="http://localhost:3000" />
+<OAuthButtons redirectTo="http://localhost:3000" />;
 ```
 
 Компонент автоматически определяет текущую локаль из URL.
@@ -92,9 +104,11 @@ Callback автоматически обрабатывается на стран
 Для синхронизации можно:
 
 1. **Использовать Database Trigger** (рекомендуется):
+
    - Создать trigger в Supabase, который автоматически создает запись в `users` при создании пользователя в `auth.users`
 
 2. **Использовать Auth Hook**:
+
    - Настроить webhook в Supabase, который будет вызывать ваш API при создании пользователя
 
 3. **Создавать вручную при первом входе**:
