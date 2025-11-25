@@ -11,12 +11,18 @@ export default function AuthCallbackPage() {
   const locale = useLocale();
   const [status, setStatus] = useState<"loading" | "error" | "success">("loading");
   const [error, setError] = useState<string | null>(null);
+  const [hasProcessed, setHasProcessed] = useState(false);
 
   useEffect(() => {
+    // Prevent multiple executions
+    if (hasProcessed) return;
+
     async function handleCallback() {
       const code = searchParams.get("code");
       const next = searchParams.get("next");
       const errorParam = searchParams.get("error");
+      
+      setHasProcessed(true);
 
       if (errorParam) {
         setError(errorParam);
@@ -170,7 +176,8 @@ export default function AuthCallbackPage() {
     }
 
     handleCallback();
-  }, [searchParams, router, locale]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Only run once on mount
 
   if (status === "loading") {
     return (

@@ -74,12 +74,15 @@ export function AuthButton() {
       setUser(session?.user ?? null);
       setLoading(false);
       
-      // Force a page refresh to update server-side state after sign in
+      // Don't reload if we're already on the callback page
       if (session && (_event === "SIGNED_IN" || _event === "TOKEN_REFRESHED")) {
-        // Small delay to ensure cookies are set
-        setTimeout(() => {
-          window.location.reload();
-        }, 100);
+        const isOnCallback = window.location.pathname.includes("/auth/callback");
+        if (!isOnCallback) {
+          // Small delay to ensure cookies are set
+          setTimeout(() => {
+            window.location.reload();
+          }, 100);
+        }
       }
     });
 
