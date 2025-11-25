@@ -474,6 +474,25 @@
     "error": "Ошибка аутентификации",
     "success": "Успешная авторизация",
     "modalTitle": "Вход в систему",
-    "modalDescription": "Выберите способ входа"
+    "modalDescription": "Выберите способ входа",
+    "dashboard": "Кабинет"
+  },
+  "dashboard": {
+    "title": "Личный кабинет",
+    "description": "Управление вашим профилем и настройками",
+    "profile": {
+      "title": "Профиль",
+      "description": "Информация о вашем аккаунте",
+      "email": "Email",
+      "noEmail": "Не указан",
+      "username": "Имя пользователя",
+      "steamId": "Steam ID",
+      "discordId": "Discord ID"
+    },
+    "stats": {
+      "title": "Статистика",
+      "description": "Ваша активность и достижения",
+      "comingSoon": "Скоро здесь появится статистика"
+    }
   }
 }

@@ -474,7 +474,26 @@
     "error": "Authentication error",
     "success": "Successfully authenticated",
     "modalTitle": "Sign in",
-    "modalDescription": "Choose your sign in method"
+    "modalDescription": "Choose your sign in method",
+    "dashboard": "Dashboard"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Manage your profile and settings",
+    "profile": {
+      "title": "Profile",
+      "description": "Your account information",
+      "email": "Email",
+      "noEmail": "Not provided",
+      "username": "Username",
+      "steamId": "Steam ID",
+      "discordId": "Discord ID"
+    },
+    "stats": {
+      "title": "Statistics",
+      "description": "Your activity and achievements",
+      "comingSoon": "Statistics coming soon"
+    }
   }
 }
 }

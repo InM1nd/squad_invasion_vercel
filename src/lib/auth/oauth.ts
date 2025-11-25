@@ -48,10 +48,15 @@ export async function signInWithOAuth(
  */
 export async function signOut() {
   const supabase = createClient();
-  const { error } = await supabase.auth.signOut();
+  const { error } = await supabase.auth.signOut({
+    scope: "global", // Sign out from all sessions
+  });
   
   if (error) {
     throw error;
   }
+  
+  // Reload the page to clear any cached state
+  window.location.href = window.location.origin;
 }
 
