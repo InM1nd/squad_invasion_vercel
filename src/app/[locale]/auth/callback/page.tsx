@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { useLocale } from "next-intl";
+import { AuthLoader } from "@/components/ui/auth-loader";
 
 export default function AuthCallbackPage() {
   const router = useRouter();
@@ -180,13 +181,7 @@ export default function AuthCallbackPage() {
   }, []); // Only run once on mount
 
   if (status === "loading") {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <p className="text-lg">Authenticating...</p>
-        </div>
-      </div>
-    );
+    return <AuthLoader />;
   }
 
   if (status === "error") {
@@ -200,11 +195,5 @@ export default function AuthCallbackPage() {
     );
   }
 
-  return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="text-center">
-        <p className="text-lg">Redirecting...</p>
-      </div>
-    </div>
-  );
+  return <AuthLoader />;
 }
