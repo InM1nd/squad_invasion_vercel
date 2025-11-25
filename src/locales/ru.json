@@ -466,11 +466,14 @@
     }
   },
   "auth": {
+    "signIn": "Войти",
     "signInWithSteam": "Войти через Steam",
     "signInWithDiscord": "Войти через Discord",
     "connecting": "Подключение...",
     "signOut": "Выйти",
     "error": "Ошибка аутентификации",
-    "success": "Успешная авторизация"
+    "success": "Успешная авторизация",
+    "modalTitle": "Вход в систему",
+    "modalDescription": "Выберите способ входа"
   }
 }

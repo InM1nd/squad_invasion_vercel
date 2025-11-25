@@ -6,6 +6,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { AuthButton } from "@/components/auth/auth-button";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { Flame } from "lucide-react";
@@ -62,6 +63,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                 ))}
               </nav>
               <div className="flex items-center gap-3">
+                <AuthButton />
                 <LanguageSwitcher />
                 <ThemeToggle />
               </div>

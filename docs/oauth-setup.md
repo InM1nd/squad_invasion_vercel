@@ -7,6 +7,7 @@
 Реализован кастомный Steam OAuth через OpenID 2.0:
 
 1. **Получите Steam Web API Key** (опционально, для получения дополнительной информации о пользователе):
+
    - Перейдите на https://steamcommunity.com/dev/apikey
    - Создайте API ключ
    - Добавьте в `.env.local`: `STEAM_API_KEY=your-api-key`
