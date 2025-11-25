@@ -464,5 +464,13 @@
         "title": "Интеграции"
       }
     }
+  },
+  "auth": {
+    "signInWithSteam": "Войти через Steam",
+    "signInWithDiscord": "Войти через Discord",
+    "connecting": "Подключение...",
+    "signOut": "Выйти",
+    "error": "Ошибка аутентификации",
+    "success": "Успешная авторизация"
   }
 }

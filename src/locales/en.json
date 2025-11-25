@@ -464,6 +464,15 @@
         "title": "Integrations"
       }
     }
+  },
+  "auth": {
+    "signInWithSteam": "Sign in with Steam",
+    "signInWithDiscord": "Sign in with Discord",
+    "connecting": "Connecting...",
+    "signOut": "Sign out",
+    "error": "Authentication error",
+    "success": "Successfully authenticated"
   }
+}
 }
 
