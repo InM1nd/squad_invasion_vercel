@@ -21,22 +21,50 @@ export function AuthButton() {
   useEffect(() => {
     const supabase = createClient();
 
-    // Get initial session
-    const checkSession = async () => {
+    // Get initial session - check multiple times to catch session after redirect
+    const checkSession = async (retryCount = 0) => {
       try {
         const { data: { session }, error } = await supabase.auth.getSession();
         if (error) {
           console.error("Error getting session:", error);
         }
-        setUser(session?.user ?? null);
-        setLoading(false);
+        
+        console.log("Session check:", retryCount, session?.user?.id || "no user");
+        
+        if (session?.user) {
+          setUser(session.user);
+          setLoading(false);
+          return true;
+        } else if (retryCount < 5) {
+          // Retry a few times in case cookies are still being set after redirect
+          setTimeout(() => checkSession(retryCount + 1), 300);
+          return false;
+        } else {
+          setUser(null);
+          setLoading(false);
+          return false;
+        }
       } catch (error) {
         console.error("Error checking session:", error);
-        setLoading(false);
+        if (retryCount < 5) {
+          setTimeout(() => checkSession(retryCount + 1), 300);
+        } else {
+          setLoading(false);
+        }
+        return false;
       }
     };
 
-    checkSession();
+    // Check if we're coming from auth callback (check URL)
+    const isFromCallback = window.location.search.includes("code=") || 
+                          window.location.pathname.includes("/auth/callback");
+    
+    if (isFromCallback) {
+      // Wait a bit longer if coming from callback
+      setTimeout(() => checkSession(), 500);
+    } else {
+      checkSession();
+    }
 
     // Listen for auth changes
     const {
@@ -55,14 +83,8 @@ export function AuthButton() {
       }
     });
 
-    // Also check session periodically (in case onAuthStateChange doesn't fire)
-    const interval = setInterval(() => {
-      checkSession();
-    }, 2000);
-
     return () => {
       subscription.unsubscribe();
-      clearInterval(interval);
     };
   }, [router]);
 
