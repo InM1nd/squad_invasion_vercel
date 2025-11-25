@@ -1,23 +1,16 @@
-import { createClient } from "@/lib/supabase/server";
-import { redirect } from "next/navigation";
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Authenticating...",
-  description: "Completing authentication",
-};
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
+import { useLocale } from "next-intl";
 
-type Props = {
-  params: Promise<{ locale: string }>;
-  searchParams: Promise<{ code?: string; next?: string; error?: string }>;
-};
-
-export default async function AuthCallbackPage({
-  params,
-  searchParams,
-}: Props) {
-  const { locale } = await params;
-  const { code, next, error: errorParam } = await searchParams;
+export default function AuthCallbackPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const locale = useLocale();
+  const [status, setStatus] = useState<"loading" | "error" | "success">("loading");
+  const [error, setError] = useState<string | null>(null);
 
   if (errorParam) {
     redirect(`/${locale}/auth/login?error=${encodeURIComponent(errorParam)}`);
