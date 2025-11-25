@@ -23,9 +23,17 @@ export function AuthButton() {
 
     // Get initial session
     const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setUser(session?.user ?? null);
-      setLoading(false);
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        if (error) {
+          console.error("Error getting session:", error);
+        }
+        setUser(session?.user ?? null);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error checking session:", error);
+        setLoading(false);
+      }
     };
 
     checkSession();
@@ -34,15 +42,28 @@ export function AuthButton() {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
+      console.log("Auth state changed:", _event, session?.user?.id);
       setUser(session?.user ?? null);
       setLoading(false);
-      // Force a page refresh to update server-side state
-      if (session && _event === "SIGNED_IN") {
-        window.location.reload();
+      
+      // Force a page refresh to update server-side state after sign in
+      if (session && (_event === "SIGNED_IN" || _event === "TOKEN_REFRESHED")) {
+        // Small delay to ensure cookies are set
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);
       }
     });
 
-    return () => subscription.unsubscribe();
+    // Also check session periodically (in case onAuthStateChange doesn't fire)
+    const interval = setInterval(() => {
+      checkSession();
+    }, 2000);
+
+    return () => {
+      subscription.unsubscribe();
+      clearInterval(interval);
+    };
   }, [router]);
 
   const handleSignOut = async () => {
