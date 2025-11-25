@@ -12,18 +12,18 @@ export default function AuthCallbackPage() {
   const locale = useLocale();
   const [status, setStatus] = useState<"loading" | "error" | "success">("loading");
   const [error, setError] = useState<string | null>(null);
-  const [hasProcessed, setHasProcessed] = useState(false);
+  const hasProcessedRef = { current: false };
 
   useEffect(() => {
     // Prevent multiple executions
-    if (hasProcessed) return;
+    if (hasProcessedRef.current) return;
 
     async function handleCallback() {
       const code = searchParams.get("code");
       const next = searchParams.get("next");
       const errorParam = searchParams.get("error");
       
-      setHasProcessed(true);
+      hasProcessedRef.current = true;
 
       if (errorParam) {
         setError(errorParam);
@@ -162,10 +162,11 @@ export default function AuthCallbackPage() {
         // Redirect to the page user was trying to access, or home
         const redirectTo = next ? decodeURIComponent(next) : `/${locale}`;
         
+        // Use router.push instead of window.location to avoid full page reload
         // Small delay to ensure session is fully established
         setTimeout(() => {
-          window.location.href = redirectTo;
-        }, 500);
+          router.push(redirectTo);
+        }, 300);
       } catch (err) {
         console.error("Error in callback:", err);
         setError(err instanceof Error ? err.message : "Unknown error");
