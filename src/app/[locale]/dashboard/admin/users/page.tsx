@@ -141,7 +141,8 @@ export default function AdminUsersPage() {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => router.push(`/dashboard/admin/users/${user.id}/edit`)}
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    onClick={() => router.push(`/dashboard/admin/users/${user.id}/edit` as any)}
                   >
                     <Edit className="h-4 w-4 mr-2" />
                     {t("editButton")}

@@ -316,7 +316,8 @@ export function EventsCalendar() {
                             if (isGoogleEvent && event.htmlLink) {
                               window.open(event.htmlLink, "_blank");
                             } else if (!isGoogleEvent) {
-                              router.push(`/dashboard/admin/events/${event.id}/edit`);
+                              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                              router.push(`/dashboard/admin/events/${event.id}/edit` as any);
                             }
                           }}
                           className={cn(

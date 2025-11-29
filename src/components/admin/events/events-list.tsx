@@ -177,7 +177,8 @@ export function EventsList() {
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => router.push(`/dashboard/admin/events/${event.id}/edit`)}
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      onClick={() => router.push(`/dashboard/admin/events/${event.id}/edit` as any)}
                     >
                       <Edit className="h-4 w-4" />
                     </Button>

@@ -211,7 +211,8 @@ export function EventsSection() {
               window.open(event.htmlLink, "_blank");
             } else if (!isGoogleEvent) {
               // Navigate to event details page for platform events
-              router.push(`/events/${event.id}`);
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              router.push(`/events/${event.id}` as any);
             }
           }}
           style={!isGoogleEvent || event.htmlLink ? { cursor: "pointer" } : undefined}

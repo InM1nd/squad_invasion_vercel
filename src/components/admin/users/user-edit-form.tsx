@@ -127,8 +127,10 @@ export function UserEditForm({ userId }: UserEditFormProps) {
 
   const canChangeAdminRole = currentUserRole && canGrantAdminRights({ 
     id: "", 
-    role: currentUserRole 
-  });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    role: currentUserRole as any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } as any);
 
   if (loading) {
     return (

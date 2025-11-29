@@ -155,10 +155,10 @@ export function EventDetailsPage({ eventId }: { eventId: string }) {
                 className="object-cover opacity-30 blur-sm scale-105"
                 unoptimized={!event.map_image.includes("supabase")}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+              <div className="absolute inset-0 bg-linear-to-b from-background/80 via-background/60 to-background" />
             </>
           ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-background" />
+            <div className="absolute inset-0 bg-linear-to-br from-primary/20 via-background to-background" />
           )}
           {/* Decorative elements */}
           <div className="absolute top-0 left-0 w-full h-full opacity-10">
@@ -202,7 +202,7 @@ export function EventDetailsPage({ eventId }: { eventId: string }) {
 
             {/* Title */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight">
-              <span className="bg-gradient-to-r from-foreground via-foreground to-foreground/70 bg-clip-text">
+              <span className="bg-linear-to-r from-foreground via-foreground to-foreground/70 bg-clip-text">
                 {event.title}
               </span>
             </h1>
@@ -241,7 +241,7 @@ export function EventDetailsPage({ eventId }: { eventId: string }) {
           <div className="max-w-5xl mx-auto">
             <div className="relative bg-card/80 backdrop-blur-xl rounded-2xl border border-border/50 shadow-2xl overflow-hidden">
               {/* Decorative top border */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-primary to-transparent" />
               
               <div className="p-8 md:p-12">
                 <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 md:gap-4 items-center">

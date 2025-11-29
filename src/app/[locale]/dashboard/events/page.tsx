@@ -119,7 +119,8 @@ export default function EventsPage() {
               <Card
                 key={event.id}
                 className="hover:border-primary/40 transition-all duration-300 cursor-pointer"
-                onClick={() => router.push(`/dashboard/events/${event.id}`)}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                onClick={() => router.push(`/dashboard/events/${event.id}` as any)}
               >
                 <CardHeader>
                   <div className="flex gap-4 items-start">
