@@ -42,10 +42,10 @@ export function AccountLinking() {
       console.error("Account linking error:", error);
       // Clear error from URL after a delay
       setTimeout(() => {
-        router.replace(`/${locale}/dashboard/settings`);
+        router.replace("/dashboard/settings" as any);
       }, 3000);
     }
-  }, [searchParams, router, locale]);
+  }, [searchParams, router]);
 
   useEffect(() => {
     async function fetchUserData() {

@@ -265,7 +265,7 @@ export async function GET(request: NextRequest) {
   const supabase = await createClient();
   const { data: existingUser } = await supabase
     .from("users")
-    .select("id, steam_id")
+    .select("id, steam_id, display_name")
     .eq("id", authUser.id)
     .single();
 

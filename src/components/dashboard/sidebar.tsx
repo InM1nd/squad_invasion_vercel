@@ -30,7 +30,7 @@ const baseNavigationItems = [
     label: "settings",
     icon: Settings,
   },
-];
+] as const;
 
 const adminNavigationItems = [
   {
@@ -51,7 +51,7 @@ const adminNavigationItems = [
     icon: Shield,
     adminOnly: true,
   },
-];
+] as const;
 
 export function DashboardSidebar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -138,7 +138,7 @@ export function DashboardSidebar() {
           return (
             <Link
               key={item.href}
-              href={item.href}
+              href={item.href as any}
               onClick={onItemClick}
               className={cn(
                 "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors",
@@ -180,7 +180,7 @@ export function DashboardSidebar() {
               return (
                 <Link
                   key={item.href}
-                  href={item.href}
+                  href={item.href as any}
                   onClick={onItemClick}
                   className={cn(
                     "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors",

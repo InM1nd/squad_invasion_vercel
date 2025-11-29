@@ -76,7 +76,7 @@ export function DesktopMenu({ navLinks }: DesktopMenuProps) {
                   {navLinks.map((item) => (
                     <Link
                       key={item.href}
-                      href={item.href}
+                      href={item.href as any}
                       onClick={() => setOpen(false)}
                       className="flex items-center justify-between group px-4 py-3 rounded-lg text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
                     >

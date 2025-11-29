@@ -45,7 +45,7 @@ export function MobileMenu({ navLinks }: MobileMenuProps) {
               {navLinks.map((item) => (
                 <Link
                   key={item.href}
-                  href={item.href}
+                  href={item.href as any}
                   onClick={() => setIsOpen(false)}
                   className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground transition-colors hover:text-foreground py-2"
                 >
