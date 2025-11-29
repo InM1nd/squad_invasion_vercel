@@ -4,11 +4,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 
 import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { LanguageSwitcher } from "@/components/language-switcher";
+import { LandingHeader } from "@/components/landing-header";
 import { routing } from "@/i18n/routing";
-import { Link } from "@/i18n/navigation";
-import { Flame } from "lucide-react";
 
 type Props = {
   children: ReactNode;
@@ -41,33 +38,8 @@ export default async function LocaleLayout({ children, params }: Props) {
     <NextIntlClientProvider locale={locale} messages={messages}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <div className="min-h-screen bg-background text-foreground">
-          <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-              <Link
-                href="/"
-                className="flex items-center gap-2 text-sm uppercase tracking-[0.4em] text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <Flame className="h-4 w-4 text-primary" />
-                <span>BÜRN</span>
-              </Link>
-              <nav className="hidden items-center gap-4 text-[11px] uppercase tracking-[0.35em] text-muted-foreground md:flex">
-                {navLinks.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="transition-colors hover:text-foreground"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
-              <div className="flex items-center gap-3">
-                <LanguageSwitcher />
-                <ThemeToggle />
-              </div>
-            </div>
-          </header>
-          <main className="mx-auto max-w-6xl px-6 py-12">{children}</main>
+          <LandingHeader navLinks={navLinks} />
+          <main className="mx-auto max-w-6xl px-4 sm:px-6 py-8 sm:py-12">{children}</main>
         </div>
       </ThemeProvider>
     </NextIntlClientProvider>

@@ -7,6 +7,7 @@ export const pathnames = {
   "/": "/",
   "/rules": "/rules",
   "/roadmap": "/roadmap",
+  "/dashboard": "/dashboard",
 } as const;
 
 export const routing = {

@@ -464,6 +464,121 @@
         "title": "Integrations"
       }
     }
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "signInWithSteam": "Sign in with Steam",
+    "signInWithDiscord": "Sign in with Discord",
+    "signInWithGoogle": "Sign in with Google",
+    "connecting": "Connecting...",
+    "signingIn": "Signing in...",
+    "signingUp": "Signing up...",
+    "signOut": "Sign out",
+    "error": "Authentication error",
+    "signInError": "Sign in error",
+    "signUpError": "Sign up error",
+    "success": "Successfully authenticated",
+    "signUpSuccess": "Registration successful",
+    "checkEmail": "Please check your email to confirm your account",
+    "modalTitle": "Sign in",
+    "modalDescription": "Choose your sign in method",
+    "email": "Email",
+    "emailPlaceholder": "your@email.com",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Repeat your password",
+    "passwordMismatch": "Passwords do not match",
+    "passwordTooShort": "Password must be at least 6 characters",
+    "alreadyHaveAccount": "Already have an account? Sign in",
+    "dontHaveAccount": "Don't have an account? Sign up",
+    "or": "or",
+    "dashboard": "Dashboard"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Manage your profile and settings",
+    "profile": {
+      "title": "Profile",
+      "description": "Your account information",
+      "email": "Email",
+      "noEmail": "Not provided",
+      "username": "Username",
+      "steamId": "Steam ID",
+      "discordId": "Discord ID"
+    },
+    "stats": {
+      "title": "Statistics",
+      "description": "Your activity and achievements",
+      "comingSoon": "Statistics coming soon"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "profile": "Profile",
+      "settings": "Settings",
+      "signOut": "Sign Out",
+      "admin": "Administration",
+      "users": "Users",
+      "events": "Events",
+      "system": "System"
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "Manage your account settings",
+      "general": {
+        "title": "General Settings",
+        "description": "Basic interface and language settings"
+      },
+      "language": {
+        "title": "Interface Language",
+        "description": "Choose your preferred language for the interface"
+      },
+      "theme": {
+        "title": "Theme",
+        "description": "Choose light, dark theme or use system default"
+      },
+      "accounts": {
+        "title": "Connected Accounts",
+        "description": "Manage your connected accounts",
+        "connected": "Connected",
+        "connect": "Connect",
+        "connecting": "Connecting...",
+        "discord": {
+          "description": "Connect Discord to join the community"
+        },
+        "google": {
+          "description": "Connect Google account for quick sign in"
+        },
+        "steam": {
+          "description": "Connect Steam to participate in games"
+        }
+      }
+    },
+    "admin": {
+      "users": {
+        "title": "User Management",
+        "description": "View and manage all system users",
+        "search": "Search Users",
+        "searchDescription": "Find users by email, username, or name",
+        "searchPlaceholder": "Search...",
+        "usersList": "Users List",
+        "view": "View",
+        "edit": "Edit"
+      },
+      "events": {
+        "title": "Event Management",
+        "description": "Create and manage events",
+        "comingSoon": "Coming Soon",
+        "comingSoonDescription": "Event management functionality will be available soon"
+      },
+      "system": {
+        "title": "System Settings",
+        "description": "Manage system settings and configuration",
+        "comingSoon": "Coming Soon",
+        "comingSoonDescription": "System settings will be available soon"
+      }
+    }
   }
 }
 

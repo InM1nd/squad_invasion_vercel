@@ -464,5 +464,120 @@
         "title": "Интеграции"
       }
     }
+  },
+  "auth": {
+    "signIn": "Войти",
+    "signUp": "Зарегистрироваться",
+    "signInWithSteam": "Войти через Steam",
+    "signInWithDiscord": "Войти через Discord",
+    "signInWithGoogle": "Войти через Google",
+    "connecting": "Подключение...",
+    "signingIn": "Вход...",
+    "signingUp": "Регистрация...",
+    "signOut": "Выйти",
+    "error": "Ошибка аутентификации",
+    "signInError": "Ошибка входа",
+    "signUpError": "Ошибка регистрации",
+    "success": "Успешная авторизация",
+    "signUpSuccess": "Регистрация успешна",
+    "checkEmail": "Проверьте вашу почту для подтверждения",
+    "modalTitle": "Вход в систему",
+    "modalDescription": "Выберите способ входа",
+    "email": "Email",
+    "emailPlaceholder": "your@email.com",
+    "password": "Пароль",
+    "passwordPlaceholder": "Введите пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "confirmPasswordPlaceholder": "Повторите пароль",
+    "passwordMismatch": "Пароли не совпадают",
+    "passwordTooShort": "Пароль должен быть не менее 6 символов",
+    "alreadyHaveAccount": "Уже есть аккаунт? Войти",
+    "dontHaveAccount": "Нет аккаунта? Зарегистрироваться",
+    "or": "или",
+    "dashboard": "Кабинет"
+  },
+  "dashboard": {
+    "title": "Личный кабинет",
+    "description": "Управление вашим профилем и настройками",
+    "profile": {
+      "title": "Профиль",
+      "description": "Информация о вашем аккаунте",
+      "email": "Email",
+      "noEmail": "Не указан",
+      "username": "Имя пользователя",
+      "steamId": "Steam ID",
+      "discordId": "Discord ID"
+    },
+    "stats": {
+      "title": "Статистика",
+      "description": "Ваша активность и достижения",
+      "comingSoon": "Скоро здесь появится статистика"
+    },
+    "nav": {
+      "dashboard": "Главная",
+      "profile": "Профиль",
+      "settings": "Настройки",
+      "signOut": "Выйти",
+      "admin": "Администрирование",
+      "users": "Пользователи",
+      "events": "События",
+      "system": "Система"
+    },
+    "settings": {
+      "title": "Настройки",
+      "description": "Управление настройками вашего аккаунта",
+      "general": {
+        "title": "Общие настройки",
+        "description": "Основные настройки интерфейса и языка"
+      },
+      "language": {
+        "title": "Язык интерфейса",
+        "description": "Выберите предпочитаемый язык для интерфейса"
+      },
+      "theme": {
+        "title": "Тема оформления",
+        "description": "Выберите светлую, темную тему или используйте системную"
+      },
+      "accounts": {
+        "title": "Привязанные аккаунты",
+        "description": "Управление подключенными аккаунтами",
+        "connected": "Подключено",
+        "connect": "Подключить",
+        "connecting": "Подключение...",
+        "discord": {
+          "description": "Подключите Discord для участия в сообществе"
+        },
+        "google": {
+          "description": "Подключите Google аккаунт для быстрого входа"
+        },
+        "steam": {
+          "description": "Подключите Steam для участия в играх"
+        }
+      }
+    },
+    "admin": {
+      "users": {
+        "title": "Управление пользователями",
+        "description": "Просмотр и управление всеми пользователями системы",
+        "search": "Поиск пользователей",
+        "searchDescription": "Найдите пользователя по email, username или имени",
+        "searchPlaceholder": "Поиск...",
+        "usersList": "Список пользователей",
+        "view": "Просмотр",
+        "edit": "Редактировать"
+      },
+      "events": {
+        "title": "Управление событиями",
+        "description": "Создание и управление событиями",
+        "comingSoon": "Скоро",
+        "comingSoonDescription": "Функционал управления событиями будет доступен в ближайшее время"
+      },
+      "system": {
+        "title": "Системные настройки",
+        "description": "Управление системными настройками и конфигурацией",
+        "comingSoon": "Скоро",
+        "comingSoonDescription": "Системные настройки будут доступны в ближайшее время"
+      }
+    }
   }
 }
