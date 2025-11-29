@@ -94,30 +94,30 @@ export function AuthButton() {
 
   if (loading) {
     return (
-      <Button variant="default" size="sm" disabled className="gap-2">
+      <Button variant="default" size="sm" disabled className="gap-1.5 sm:gap-2">
         <LogIn className="h-4 w-4" />
-        {t("signIn")}
+        <span className="hidden sm:inline">{t("signIn")}</span>
       </Button>
     );
   }
 
   if (user) {
     return (
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1 sm:gap-2">
         <Link href="/dashboard">
-          <Button variant="outline" size="sm" className="gap-2">
+          <Button variant="outline" size="sm" className="gap-1.5 sm:gap-2">
             <LayoutDashboard className="h-4 w-4" />
-            {t("dashboard")}
+            <span className="hidden sm:inline">{t("dashboard")}</span>
           </Button>
         </Link>
         <Button
           variant="ghost"
           size="sm"
           onClick={handleSignOut}
-          className="gap-2"
+          className="gap-1.5 sm:gap-2"
         >
           <LogOut className="h-4 w-4" />
-          {t("signOut")}
+          <span className="hidden sm:inline">{t("signOut")}</span>
         </Button>
       </div>
     );
@@ -129,10 +129,10 @@ export function AuthButton() {
         variant="default"
         size="sm"
         onClick={() => setIsOpen(true)}
-        className="gap-2"
+        className="gap-1.5 sm:gap-2"
       >
         <LogIn className="h-4 w-4" />
-        {t("signIn")}
+        <span className="hidden sm:inline">{t("signIn")}</span>
       </Button>
       <AuthModal open={isOpen} onOpenChange={setIsOpen} />
     </>

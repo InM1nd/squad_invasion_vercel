@@ -20,12 +20,20 @@ const STEAM_API_KEY = process.env.STEAM_API_KEY;
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
   const returnTo = requestUrl.searchParams.get("returnTo") || "/";
+  const linkAccount = requestUrl.searchParams.get("linkAccount") === "true";
+  
+  // Build callback URL with all necessary parameters
+  const callbackUrl = new URL(`${requestUrl.origin}/api/auth/steam/callback`);
+  callbackUrl.searchParams.set("returnTo", returnTo);
+  if (linkAccount) {
+    callbackUrl.searchParams.set("linkAccount", "true");
+  }
   
   // Build Steam OpenID login URL
   const params = new URLSearchParams({
     "openid.ns": "http://specs.openid.net/auth/2.0",
     "openid.mode": "checkid_setup",
-    "openid.return_to": `${requestUrl.origin}/api/auth/steam/callback?returnTo=${encodeURIComponent(returnTo)}`,
+    "openid.return_to": callbackUrl.toString(),
     "openid.realm": requestUrl.origin,
     "openid.identity": "http://specs.openid.net/auth/2.0/identifier_select",
     "openid.claimed_id": "http://specs.openid.net/auth/2.0/identifier_select",

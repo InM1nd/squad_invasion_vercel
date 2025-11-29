@@ -71,6 +71,7 @@ export const users = pgTable(
     // External accounts
     steamId: text("steam_id").unique(),
     discordId: text("discord_id").unique(),
+    googleId: text("google_id").unique(),
     // Statistics
     rating: integer("rating").default(1000).notNull(), // ELO rating, default 1000
     // Admin roles
@@ -87,6 +88,8 @@ export const users = pgTable(
     emailIdx: index("users_email_idx").on(table.email),
     usernameIdx: index("users_username_idx").on(table.username),
     steamIdIdx: index("users_steam_id_idx").on(table.steamId),
+    discordIdIdx: index("users_discord_id_idx").on(table.discordId),
+    googleIdIdx: index("users_google_id_idx").on(table.googleId),
   })
 );
 

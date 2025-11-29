@@ -11,6 +11,8 @@ import { createClient as createServiceClient } from "@supabase/supabase-js";
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
   const userId = requestUrl.searchParams.get("userId");
+  const returnTo = requestUrl.searchParams.get("returnTo") || "/";
+  const locale = requestUrl.searchParams.get("locale") || "ru";
 
   if (!userId) {
     return NextResponse.json(
@@ -48,7 +50,7 @@ export async function GET(request: NextRequest) {
       type: "magiclink",
       email: userData.user.email!,
       options: {
-        redirectTo: `${requestUrl.origin}/auth/steam/verify`,
+        redirectTo: `${requestUrl.origin}/${locale}/auth/steam/verify?returnTo=${encodeURIComponent(returnTo)}`,
       },
     });
 

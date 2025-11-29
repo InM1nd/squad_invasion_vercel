@@ -37,12 +37,38 @@
    - **Client Secret**: из Discord Developer Portal
 6. Сохраните настройки
 
+## Google OAuth
+
+1. Перейдите в Supabase Dashboard → Authentication → Providers
+2. Найдите "Google" в списке провайдеров
+3. Включите провайдер
+4. Создайте проект в Google Cloud Console:
+   - Перейдите на https://console.cloud.google.com
+   - Создайте новый проект или выберите существующий
+   - Перейдите в **APIs & Services** → **Credentials**
+   - Нажмите **Create Credentials** → **OAuth client ID**
+   - Выберите **Web application**
+   - Добавьте **Authorized redirect URIs**:
+     - `https://vpzvmmsenskreznshevf.supabase.co/auth/v1/callback`
+   - Скопируйте **Client ID** и **Client Secret**
+5. В Supabase введите:
+   - **Client ID**: из Google Cloud Console
+   - **Client Secret**: из Google Cloud Console
+6. Сохраните настройки
+
+**Важно:** Убедитесь, что OAuth consent screen настроен в Google Cloud Console:
+
+- Перейдите в **APIs & Services** → **OAuth consent screen**
+- Выберите тип пользователей (Internal или External)
+- Заполните обязательные поля (App name, User support email, Developer contact)
+- Добавьте scopes: `email`, `profile`
+
 ## Настройка Redirect URLs
 
 Убедитесь, что в Supabase Dashboard → Authentication → URL Configuration добавлены:
 
 - **Site URL**: `http://localhost:3000` (для разработки)
-- **Redirect URLs** (для Discord):
+- **Redirect URLs** (для Discord и Google):
   - `http://localhost:3000/ru/auth/callback`
   - `http://localhost:3000/en/auth/callback`
   - `https://yourdomain.com/ru/auth/callback` (для продакшена)
@@ -73,6 +99,7 @@ import { signInWithOAuth } from "@/lib/auth/oauth";
 // Инициировать OAuth поток
 await signInWithOAuth("steam", "http://localhost:3000", "ru");
 await signInWithOAuth("discord", "http://localhost:3000", "ru");
+await signInWithOAuth("google", "http://localhost:3000", "ru");
 ```
 
 ### Callback обработка
@@ -91,8 +118,9 @@ Callback автоматически обрабатывается на стран
 
 ## Важные замечания
 
-- **Steam**: Требует верификации домена для production
+- **Steam**: Требует верификации домена для production (опционально, для Steam Web API)
 - **Discord**: Работает сразу после настройки
+- **Google**: Работает сразу после настройки, требует настройки OAuth consent screen
 - Все OAuth провайдеры используют один и тот же callback URL в Supabase
 - Callback URL должен быть настроен в Supabase Dashboard → Authentication → URL Configuration
 - После авторизации пользователь автоматически создается в таблице `auth.users` в Supabase

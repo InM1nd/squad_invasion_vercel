@@ -1,64 +1,56 @@
 /**
- * Permission checking utilities
- * 
- * Note: This is a placeholder for the permission system.
- * Full implementation will be added when permissions table is populated.
+ * Permission and role checking utilities
  */
 
-export interface Permission {
-  name: string;
-  category: string;
-  description?: string;
+export type UserRole = "user" | "event_admin" | "admin" | "super_admin";
+
+export interface User {
+  id: string;
+  role: UserRole;
 }
 
 /**
- * Check if user has a specific permission
- * 
- * This function will check:
- * 1. User's role-based permissions
- * 2. User's individual permissions
- * 
- * @param userId - User ID
- * @param permissionName - Permission name (e.g., "events.create", "users.ban")
- * @returns Promise<boolean>
+ * Check if user has a specific role
  */
-export async function hasPermission(
-  userId: string,
-  permissionName: string
-): Promise<boolean> {
-  // TODO: Implement permission checking logic
-  // This will query the permissions, user_permissions, and role_permissions tables
-  // For now, return false as a safe default
-  return false;
+export function hasRole(user: User | null | undefined, role: UserRole): boolean {
+  if (!user) return false;
+  return user.role === role;
 }
 
 /**
- * Check if user has any of the specified permissions
+ * Check if user has at least a specific role level
+ * Role hierarchy: user < event_admin < admin < super_admin
  */
-export async function hasAnyPermission(
-  userId: string,
-  permissionNames: string[]
-): Promise<boolean> {
-  for (const permissionName of permissionNames) {
-    if (await hasPermission(userId, permissionName)) {
-      return true;
-    }
-  }
-  return false;
+export function hasMinimumRole(user: User | null | undefined, minimumRole: UserRole): boolean {
+  if (!user) return false;
+
+  const roleHierarchy: Record<UserRole, number> = {
+    user: 0,
+    event_admin: 1,
+    admin: 2,
+    super_admin: 3,
+  };
+
+  return roleHierarchy[user.role] >= roleHierarchy[minimumRole];
 }
 
 /**
- * Check if user has all of the specified permissions
+ * Check if user is super admin
  */
-export async function hasAllPermissions(
-  userId: string,
-  permissionNames: string[]
-): Promise<boolean> {
-  for (const permissionName of permissionNames) {
-    if (!(await hasPermission(userId, permissionName))) {
-      return false;
-    }
-  }
-  return true;
+export function isSuperAdmin(user: User | null | undefined): boolean {
+  return hasRole(user, "super_admin");
 }
 
+/**
+ * Check if user is admin or super admin
+ */
+export function isAdmin(user: User | null | undefined): boolean {
+  return hasMinimumRole(user, "admin");
+}
+
+/**
+ * Check if user is event admin or higher
+ */
+export function isEventAdmin(user: User | null | undefined): boolean {
+  return hasMinimumRole(user, "event_admin");
+}

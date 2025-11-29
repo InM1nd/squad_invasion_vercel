@@ -2,7 +2,8 @@
 
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
+import { useLocale } from "next-intl";
+import { AuthLoader } from "@/components/ui/auth-loader";
 
 /**
  * Steam session creation page
@@ -16,19 +17,20 @@ import { createClient } from "@/lib/supabase/client";
 export default function SteamSessionPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const locale = useLocale();
   const userId = searchParams.get("userId");
-  const returnTo = searchParams.get("returnTo") || "/";
+  const returnTo = searchParams.get("returnTo") || `/${locale}`;
 
   useEffect(() => {
     async function createSession() {
       if (!userId) {
-        router.push(`/auth/login?error=${encodeURIComponent("Missing user ID")}`);
+        router.push(`/${locale}?error=${encodeURIComponent("Missing user ID")}`);
         return;
       }
 
       // Call API to get magic link
       try {
-        const response = await fetch(`/api/auth/steam/session?userId=${userId}`);
+        const response = await fetch(`/api/auth/steam/session?userId=${userId}&returnTo=${encodeURIComponent(returnTo)}&locale=${locale}`);
         const data = await response.json();
 
         if (!response.ok) {
@@ -45,19 +47,13 @@ export default function SteamSessionPage() {
         router.push(returnTo);
       } catch (error) {
         console.error("Error creating session:", error);
-        router.push(`/auth/login?error=${encodeURIComponent("Session creation failed")}`);
+        router.push(`/${locale}?error=${encodeURIComponent("Session creation failed")}`);
       }
     }
 
     createSession();
-  }, [userId, returnTo, router]);
+  }, [userId, returnTo, router, locale]);
 
-  return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="text-center">
-        <p className="text-lg">Creating session...</p>
-      </div>
-    </div>
-  );
+  return <AuthLoader />;
 }
 
