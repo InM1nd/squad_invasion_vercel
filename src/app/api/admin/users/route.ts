@@ -31,16 +31,24 @@ export async function GET(request: NextRequest) {
       }
     );
 
-    // Verify current user is super_admin
+    // Verify current user is admin or super_admin
     const { data: currentUserData, error: currentUserError } = await supabaseService
       .from("users")
       .select("role")
       .eq("id", user.id)
       .single();
 
-    if (currentUserError || currentUserData?.role !== "super_admin") {
+    if (currentUserError || !currentUserData) {
       return NextResponse.json(
-        { error: "Forbidden: Super admin access required" },
+        { error: "Forbidden: Access denied" },
+        { status: 403 }
+      );
+    }
+
+    // Allow admin and super_admin to access
+    if (currentUserData.role !== "admin" && currentUserData.role !== "super_admin") {
+      return NextResponse.json(
+        { error: "Forbidden: Admin access required" },
         { status: 403 }
       );
     }

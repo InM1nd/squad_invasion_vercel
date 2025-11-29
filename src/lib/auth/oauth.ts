@@ -6,15 +6,41 @@ import { createClient } from "@/lib/supabase/client";
 export type OAuthProvider = "steam" | "discord" | "google";
 
 /**
+ * Get the base URL for redirects
+ * Always uses current window.location.origin to automatically detect environment
+ * 
+ * This ensures that:
+ * - On localhost → uses http://localhost:3000
+ * - On production → uses https://squad-invasion.vercel.app
+ * 
+ * IMPORTANT: Both URLs must be added to Supabase Redirect URLs list
+ * 
+ * NOTE: We NEVER use NEXT_PUBLIC_SITE_URL in client code to ensure
+ * the correct URL is always used based on where the code is running
+ */
+function getBaseUrl(): string {
+  if (typeof window !== "undefined") {
+    // CRITICAL: Always use current origin - never use env variable in client
+    // This ensures localhost works when developing locally
+    // and production URL works when deployed
+    return window.location.origin;
+  }
+  
+  // Fallback for SSR (shouldn't happen in OAuth flow, but just in case)
+  // Default to localhost for SSR - this should never be used in OAuth flow
+  return "http://localhost:3000";
+}
+
+/**
  * Initiate OAuth sign in flow
  * 
  * @param provider - OAuth provider (steam or discord)
- * @param redirectTo - Base URL to redirect after successful authentication (defaults to current origin)
+ * @param redirectTo - Base URL to redirect after successful authentication (defaults to current origin or NEXT_PUBLIC_SITE_URL)
  * @param locale - Locale for redirect (defaults to 'ru')
  */
 export async function signInWithOAuth(
   provider: OAuthProvider,
-  redirectTo: string = window.location.origin,
+  redirectTo?: string,
   locale: string = "ru"
 ) {
   // Steam uses custom OpenID flow, not Supabase OAuth
@@ -35,10 +61,23 @@ export async function signInWithOAuth(
   const { data: { user } } = await supabase.auth.getUser();
   const isLinking = user !== null && currentPath.includes("/dashboard/settings");
   
+  // Use provided redirectTo or get base URL
+  const baseUrl = redirectTo || getBaseUrl();
+  const redirectUrl = `${baseUrl}/${locale}/auth/callback?next=${encodeURIComponent(currentPath)}${isLinking ? `&linkAccount=true&provider=${provider}` : ""}`;
+  
+  // Debug logging
+  console.log("🔐 OAuth redirect URL:", {
+    provider,
+    baseUrl,
+    currentOrigin: window.location.origin,
+    redirectUrl,
+    isLinking,
+  });
+  
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
     options: {
-      redirectTo: `${redirectTo}/${locale}/auth/callback?next=${encodeURIComponent(currentPath)}${isLinking ? `&linkAccount=true&provider=${provider}` : ""}`,
+      redirectTo: redirectUrl,
       // If linking, skip email confirmation
       skipBrowserRedirect: false,
     },

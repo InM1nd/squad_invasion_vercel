@@ -32,7 +32,7 @@ export function TargetCursor({
   const activeStrengthRef = useRef({ current: 0 });
 
   const [cursorTheme, setCursorTheme] = useState<"light" | "dark">("dark");
-  const [isMounted] = useState(() => typeof window !== "undefined");
+  const [isMounted, setIsMounted] = useState(false);
 
   const isMobile = useMemo(() => {
     if (typeof window === "undefined") return true;
@@ -59,6 +59,7 @@ export function TargetCursor({
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    setIsMounted(true);
     const root = document.documentElement;
     const updateTheme = () => {
       setCursorTheme(root.classList.contains("dark") ? "dark" : "light");
@@ -70,7 +71,7 @@ export function TargetCursor({
   }, []);
 
   useEffect(() => {
-    if (isMobile || !cursorRef.current || typeof window === "undefined") {
+    if (isMobile || !cursorRef.current || typeof window === "undefined" || !isMounted) {
       return;
     }
 
@@ -79,11 +80,6 @@ export function TargetCursor({
     let isInitialized = false;
 
     const initCursor = () => {
-      // Prevent multiple initializations
-      if (isInitialized) {
-        return;
-      }
-
       // Clear any pending retry
       if (retryTimeout) {
         clearTimeout(retryTimeout);
@@ -94,6 +90,12 @@ export function TargetCursor({
       if (cleanupFn) {
         cleanupFn();
         cleanupFn = null;
+        isInitialized = false;
+      }
+
+      // Prevent multiple initializations (only if already initialized and not cleaning up)
+      if (isInitialized) {
+        return;
       }
 
       const container = containerSelector
@@ -104,7 +106,7 @@ export function TargetCursor({
       if (containerSelector && !container) {
         retryTimeout = setTimeout(() => {
           const foundContainer = document.querySelector(containerSelector!);
-          if (foundContainer) {
+          if (foundContainer && !isInitialized) {
             initCursor();
           }
         }, 100);
@@ -450,6 +452,7 @@ export function TargetCursor({
     hoverDuration,
     parallaxOn,
     containerSelector,
+    isMounted,
   ]);
 
   useEffect(() => {

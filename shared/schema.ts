@@ -48,6 +48,7 @@ export const registrationStatusEnum = pgEnum("registration_status", [
 
 export const userRoleEnum = pgEnum("user_role", [
   "user",
+  "squad_leader",
   "event_admin",
   "admin",
   "super_admin",
@@ -111,6 +112,12 @@ export const events = pgTable(
     // Location/Server
     server: text("server"),
     map: text("map"),
+    mapImage: text("map_image"), // URL to map image in Supabase Storage
+    // Teams
+    team1Name: text("team1_name"),
+    team1Image: text("team1_image"), // URL to team1 image in Supabase Storage
+    team2Name: text("team2_name"),
+    team2Image: text("team2_image"), // URL to team2 image in Supabase Storage
     // Limits
     maxParticipants: integer("max_participants").notNull().default(50),
     // Organizer

@@ -63,16 +63,44 @@
 - Заполните обязательные поля (App name, User support email, Developer contact)
 - Добавьте scopes: `email`, `profile`
 
-## Настройка Redirect URLs
+## Настройка Redirect URLs (важно!)
 
-Убедитесь, что в Supabase Dashboard → Authentication → URL Configuration добавлены:
+Для работы с одним Supabase проектом на локальной разработке и продакшене:
 
-- **Site URL**: `http://localhost:3000` (для разработки)
-- **Redirect URLs** (для Discord и Google):
-  - `http://localhost:3000/ru/auth/callback`
-  - `http://localhost:3000/en/auth/callback`
-  - `https://yourdomain.com/ru/auth/callback` (для продакшена)
-  - `https://yourdomain.com/en/auth/callback` (для продакшена)
+### 1. Site URL (только один)
+
+- **Site URL**: `https://squad-invasion.vercel.app` (установите продакшн URL)
+  - Это основной URL для продакшена
+  - **Не меняйте его** - код автоматически определит localhost при локальной разработке
+
+### 2. Redirect URLs (обязательно добавьте оба окружения!)
+
+В разделе **Redirect URLs** добавьте **ВСЕ** следующие URL:
+
+**Для разработки (localhost):**
+
+- `http://localhost:3000/ru/auth/callback`
+- `http://localhost:3000/en/auth/callback`
+
+**Для продакшена:**
+
+- `https://squad-invasion.vercel.app/ru/auth/callback`
+- `https://squad-invasion.vercel.app/en/auth/callback`
+
+### Как это работает
+
+1. Код **всегда** использует `window.location.origin` для определения текущего домена
+2. На **localhost** → автоматически использует `http://localhost:3000`
+3. На **продакшене** → автоматически использует `https://squad-invasion.vercel.app`
+4. Supabase проверяет redirect URL против списка **Redirect URLs** (не Site URL!)
+5. Если URL есть в списке Redirect URLs → авторизация проходит успешно
+
+### Важно!
+
+- ✅ **Site URL** можно оставить на продакшн
+- ✅ **Redirect URLs** должны содержать **ОБА** окружения (localhost и продакшн)
+- ✅ Код автоматически выберет правильный URL в зависимости от того, где запущено приложение
+- ❌ Не нужно менять Site URL при переключении между окружениями
 
 **Примечание:** Steam не требует настройки в Supabase, так как использует кастомный OpenID flow.
 

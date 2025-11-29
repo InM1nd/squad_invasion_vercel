@@ -5,8 +5,9 @@ import { useTranslations } from "next-intl";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2, Search, User, Shield, Ban } from "lucide-react";
+import { Loader2, Search, User, Shield, Ban, Edit } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useRouter } from "@/i18n/navigation";
 
 interface UserData {
   id: string;
@@ -19,6 +20,7 @@ interface UserData {
 }
 
 export default function AdminUsersPage() {
+  const router = useRouter();
   const [users, setUsers] = useState<UserData[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -59,6 +61,7 @@ export default function AdminUsersPage() {
       super_admin: "destructive",
       admin: "default",
       event_admin: "secondary",
+      squad_leader: "secondary",
       user: "secondary",
     };
 
@@ -126,7 +129,7 @@ export default function AdminUsersPage() {
                       {user.is_banned && (
                         <Badge variant="destructive" className="text-xs">
                           <Ban className="h-3 w-3 mr-1" />
-                          Banned
+                          {t("banned")}
                         </Badge>
                       )}
                     </div>
@@ -135,11 +138,13 @@ export default function AdminUsersPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Button variant="outline" size="sm">
-                    {t("view")}
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    {t("edit")}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => router.push(`/dashboard/admin/users/${user.id}/edit`)}
+                  >
+                    <Edit className="h-4 w-4 mr-2" />
+                    {t("editButton")}
                   </Button>
                 </div>
               </div>

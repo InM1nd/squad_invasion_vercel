@@ -10,8 +10,12 @@ export const pathnames = {
   "/dashboard": "/dashboard",
   "/dashboard/profile": "/dashboard/profile",
   "/dashboard/settings": "/dashboard/settings",
+  "/dashboard/events": "/dashboard/events",
+  "/dashboard/squad": "/dashboard/squad",
+  "/dashboard/squad/notes": "/dashboard/squad/notes",
   "/dashboard/admin/users": "/dashboard/admin/users",
   "/dashboard/admin/events": "/dashboard/admin/events",
+  "/dashboard/admin/events/create": "/dashboard/admin/events/create",
   "/dashboard/admin/system": "/dashboard/admin/system",
 } as const;
 

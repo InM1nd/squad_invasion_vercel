@@ -13,7 +13,8 @@ interface AdminGuardProps {
 
 /**
  * Component that protects admin routes
- * Redirects non-admin users to dashboard
+ * Allows access for admin and super_admin roles
+ * Redirects other users to dashboard
  */
 export function AdminGuard({ children }: AdminGuardProps) {
   const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
@@ -36,7 +37,9 @@ export function AdminGuard({ children }: AdminGuardProps) {
           const data = await response.json();
           const role = data.role as UserRole;
           
-          if (role === "super_admin") {
+          // Admin and super_admin both have access to admin panel
+          // Only super_admin can grant admin rights (checked separately)
+          if (role === "admin" || role === "super_admin") {
             setIsAuthorized(true);
           } else {
             router.push("/dashboard");

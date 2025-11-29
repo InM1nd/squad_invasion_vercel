@@ -157,9 +157,8 @@ export function AccountLinking() {
   const handleLink = async (provider: OAuthProvider) => {
     setLoading(provider);
     try {
-      // Store current path for redirect after linking
-      const currentPath = window.location.pathname;
-      await signInWithOAuth(provider, window.location.origin, locale);
+      // signInWithOAuth will automatically use the correct base URL
+      await signInWithOAuth(provider, undefined, locale);
       // The redirect will happen automatically
     } catch (error) {
       console.error(`Error linking ${provider}:`, error);

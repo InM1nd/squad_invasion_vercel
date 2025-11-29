@@ -118,7 +118,17 @@
     "badge": "Locked in",
     "cta_request": "Request match in Discord",
     "cta_watch": "Open Google Calendar",
-    "demoNotice": "Demo schedule is shown because the Google Calendar key is missing or inaccessible."
+    "demoNotice": "Demo schedule is shown because the Google Calendar key is missing or inaccessible.",
+    "backToHome": "Back to Home",
+    "teams": "Teams",
+    "maxParticipants": "max participants",
+    "registrationOpen": "Registration Open",
+    "registrationDescription": "Join the event and become part of the match!",
+    "register": "Register",
+    "gameMode": "Game Mode",
+    "map": "Map",
+    "server": "Server",
+    "participants": "Participants"
   },
   "intel": {
     "eyebrow": "Live Intel",
@@ -517,10 +527,14 @@
       "dashboard": "Dashboard",
       "profile": "Profile",
       "settings": "Settings",
+      "events": "Events",
+      "squad": "Squad",
+      "notes": "Notes",
       "signOut": "Sign Out",
+      "squadLeader": "Squad Leader",
       "admin": "Administration",
       "users": "Users",
-      "events": "Events",
+      "adminEvents": "Events",
       "system": "System"
     },
     "settings": {
@@ -564,13 +578,161 @@
         "searchPlaceholder": "Search...",
         "usersList": "Users List",
         "view": "View",
-        "edit": "Edit"
+        "editButton": "Edit",
+        "banned": "Banned",
+        "edit": {
+          "title": "Edit User",
+          "description": "Modify user data, role, and ban status",
+          "usernameLabel": "Username",
+          "usernamePlaceholder": "Enter username",
+          "displayNameLabel": "Display Name",
+          "displayNamePlaceholder": "Enter display name",
+          "bioLabel": "Bio",
+          "bioPlaceholder": "Enter user bio",
+          "roleLabel": "Role",
+          "roleUser": "User",
+          "roleSquadLeader": "Squad Leader",
+          "roleEventAdmin": "Event Admin",
+          "roleAdmin": "Admin",
+          "roleSuperAdmin": "Super Admin",
+          "roleChangeRestricted": "Only super admin can grant admin rights",
+          "ratingLabel": "Rating",
+          "banSection": "Ban Management",
+          "banDescription": "Configure user ban status",
+          "isBannedLabel": "Banned",
+          "bannedUntilLabel": "Banned Until",
+          "bannedUntilHint": "Leave empty for permanent ban",
+          "banReasonLabel": "Ban Reason",
+          "banReasonPlaceholder": "Enter ban reason",
+          "cancel": "Cancel",
+          "save": "Save",
+          "saving": "Saving..."
+        }
       },
       "events": {
         "title": "Event Management",
         "description": "Create and manage events",
-        "comingSoon": "Coming Soon",
-        "comingSoonDescription": "Event management functionality will be available soon"
+        "list": {
+          "title": "Events List",
+          "description": "All created events in the system",
+          "createButton": "Create Event",
+          "empty": "No events created yet",
+          "createFirst": "Create First Event",
+          "noDescription": "No description",
+          "public": "Public",
+          "private": "Private",
+          "maxParticipants": "Max Participants",
+          "view": "List"
+        },
+        "calendar": {
+          "view": "Calendar",
+          "today": "Today",
+          "more": "more",
+          "january": "January",
+          "february": "February",
+          "march": "March",
+          "april": "April",
+          "may": "May",
+          "june": "June",
+          "july": "July",
+          "august": "August",
+          "september": "September",
+          "october": "October",
+          "november": "November",
+          "december": "December",
+          "sunday": "Sunday",
+          "monday": "Monday",
+          "tuesday": "Tuesday",
+          "wednesday": "Wednesday",
+          "thursday": "Thursday",
+          "friday": "Friday",
+          "saturday": "Saturday",
+          "legend": {
+            "upcoming": "Upcoming",
+            "ongoing": "Ongoing",
+            "completed": "Completed"
+          }
+        },
+        "create": {
+          "title": "Create Event",
+          "description": "Fill out the form to create a new event",
+          "titleLabel": "Title",
+          "titlePlaceholder": "Enter event title",
+          "descriptionLabel": "Description",
+          "descriptionPlaceholder": "Enter event description",
+          "typeLabel": "Event Type",
+          "typeClanWar": "Clan War",
+          "typeScrim": "Scrim",
+          "typeTournament": "Tournament",
+          "typeTraining": "Training",
+          "gameModeLabel": "Game Mode",
+          "gameModeInvasion": "Invasion",
+          "gameModeTC": "Territory Control",
+          "gameModeRAAS": "RAAS",
+          "gameModeAAS": "AAS",
+          "startDateLabel": "Start Date",
+          "endDateLabel": "End Date",
+          "serverLabel": "Server",
+          "serverPlaceholder": "Server name or IP",
+          "mapLabel": "Map",
+          "mapPlaceholder": "Map name",
+          "mapImageLabel": "Map Image",
+          "uploadMapImage": "Upload Map Image",
+          "teamsSection": "Teams",
+          "team1NameLabel": "Team 1 Name",
+          "team1NamePlaceholder": "Enter team name",
+          "team1ImageLabel": "Team 1 Image",
+          "team2NameLabel": "Team 2 Name",
+          "team2NamePlaceholder": "Enter team name",
+          "team2ImageLabel": "Team 2 Image",
+          "uploadImage": "Upload Image",
+          "uploading": "Uploading...",
+          "removeImage": "Remove Image",
+          "resetToDefault": "Reset to Default",
+          "mapImageAutoLoaded": "Map image will be automatically loaded when map is selected",
+          "uploadCustomMapImage": "Upload Custom Map Image",
+          "maxParticipantsLabel": "Maximum Participants",
+          "isPublicLabel": "Public Event",
+          "registrationOpenLabel": "Registration Open",
+          "cancel": "Cancel",
+          "submit": "Create",
+          "creating": "Creating..."
+        },
+        "deleteConfirm": "Are you sure you want to delete this event?",
+        "deleteError": "Error deleting event",
+        "deleteDialog": {
+          "title": "Confirm Deletion",
+          "description": "Are you sure you want to delete this event? This action cannot be undone.",
+          "cancel": "Cancel",
+          "confirm": "Delete",
+          "deleting": "Deleting..."
+        },
+        "edit": {
+          "title": "Edit Event",
+          "description": "Update event information",
+          "statusLabel": "Status",
+          "cancel": "Cancel",
+          "submit": "Save",
+          "saving": "Saving..."
+        },
+        "status": {
+          "upcoming": "Upcoming",
+          "ongoing": "Ongoing",
+          "completed": "Completed",
+          "cancelled": "Cancelled"
+        },
+        "type": {
+          "clan_war": "Clan War",
+          "scrim": "Scrim",
+          "tournament": "Tournament",
+          "training": "Training"
+        },
+        "gameMode": {
+          "invasion": "Invasion",
+          "territory_control": "Territory Control",
+          "raas": "RAAS",
+          "aas": "AAS"
+        }
       },
       "system": {
         "title": "System Settings",
@@ -578,6 +740,49 @@
         "comingSoon": "Coming Soon",
         "comingSoonDescription": "System settings will be available soon"
       }
+    },
+    "events": {
+      "title": "Events",
+      "description": "View all available events",
+      "empty": "No events created yet",
+      "registrationOpen": "Registration Open",
+      "maxParticipants": "Max Participants",
+      "status": {
+        "upcoming": "Upcoming",
+        "ongoing": "Ongoing",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "type": {
+        "clan_war": "Clan War",
+        "scrim": "Scrim",
+        "tournament": "Tournament",
+        "training": "Training"
+      },
+      "gameMode": {
+        "invasion": "Invasion",
+        "territory_control": "Territory Control",
+        "raas": "RAAS",
+        "aas": "AAS"
+      }
+    },
+    "squad": {
+      "title": "Squad Management",
+      "description": "Manage your squad and members",
+      "comingSoon": "Coming Soon",
+      "comingSoonDescription": "Squad management functionality will be available soon",
+      "content": "Squad information, members, and statistics will be displayed here.",
+      "notes": {
+        "title": "Squad Notes",
+        "description": "Shared notes and tactical plans for your squad",
+        "comingSoon": "Coming Soon",
+        "comingSoonDescription": "Notes functionality will be available soon",
+        "content": "Create and edit notes, tactical plans, and other information for your squad here."
+      }
+    },
+    "profile": {
+      "displayName": "Display Name",
+      "role": "Role"
     }
   }
 }

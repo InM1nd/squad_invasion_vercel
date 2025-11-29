@@ -118,7 +118,17 @@
     "badge": "Закреплено",
     "cta_request": "Запросить матч в Discord",
     "cta_watch": "Открыть Google Calendar",
-    "demoNotice": "Сейчас показываем демо-матчи — добавьте ключ и ID Google Calendar, чтобы увидеть реальные слоты."
+    "demoNotice": "Сейчас показываем демо-матчи — добавьте ключ и ID Google Calendar, чтобы увидеть реальные слоты.",
+    "backToHome": "Вернуться на главную",
+    "teams": "Команды",
+    "maxParticipants": "макс. участников",
+    "registrationOpen": "Регистрация открыта",
+    "registrationDescription": "Присоединяйтесь к событию и станьте частью матча!",
+    "register": "Зарегистрироваться",
+    "gameMode": "Режим игры",
+    "map": "Карта",
+    "server": "Сервер",
+    "participants": "Участников"
   },
   "intel": {
     "eyebrow": "Оперативная сводка",
@@ -517,10 +527,14 @@
       "dashboard": "Главная",
       "profile": "Профиль",
       "settings": "Настройки",
+      "events": "События",
+      "squad": "Отряд",
+      "notes": "Заметки",
       "signOut": "Выйти",
+      "squadLeader": "Командир отряда",
       "admin": "Администрирование",
       "users": "Пользователи",
-      "events": "События",
+      "adminEvents": "События",
       "system": "Система"
     },
     "settings": {
@@ -564,13 +578,161 @@
         "searchPlaceholder": "Поиск...",
         "usersList": "Список пользователей",
         "view": "Просмотр",
-        "edit": "Редактировать"
+        "editButton": "Редактировать",
+        "banned": "Заблокирован",
+        "edit": {
+          "title": "Редактирование пользователя",
+          "description": "Измените данные пользователя, роль и статус бана",
+          "usernameLabel": "Имя пользователя",
+          "usernamePlaceholder": "Введите имя пользователя",
+          "displayNameLabel": "Отображаемое имя",
+          "displayNamePlaceholder": "Введите отображаемое имя",
+          "bioLabel": "Биография",
+          "bioPlaceholder": "Введите биографию пользователя",
+          "roleLabel": "Роль",
+          "roleUser": "Пользователь",
+          "roleSquadLeader": "Командир отряда",
+          "roleEventAdmin": "Администратор событий",
+          "roleAdmin": "Администратор",
+          "roleSuperAdmin": "Супер администратор",
+          "roleChangeRestricted": "Только супер администратор может назначать права администратора",
+          "ratingLabel": "Рейтинг",
+          "banSection": "Управление баном",
+          "banDescription": "Настройка статуса бана пользователя",
+          "isBannedLabel": "Заблокирован",
+          "bannedUntilLabel": "Заблокирован до",
+          "bannedUntilHint": "Оставьте пустым для постоянного бана",
+          "banReasonLabel": "Причина бана",
+          "banReasonPlaceholder": "Введите причину бана",
+          "cancel": "Отмена",
+          "save": "Сохранить",
+          "saving": "Сохранение..."
+        }
       },
       "events": {
         "title": "Управление событиями",
         "description": "Создание и управление событиями",
-        "comingSoon": "Скоро",
-        "comingSoonDescription": "Функционал управления событиями будет доступен в ближайшее время"
+        "list": {
+          "title": "Список событий",
+          "description": "Все созданные события в системе",
+          "createButton": "Создать событие",
+          "empty": "События пока не созданы",
+          "createFirst": "Создать первое событие",
+          "noDescription": "Описание отсутствует",
+          "public": "Публичное",
+          "private": "Приватное",
+          "maxParticipants": "Макс. участников",
+          "view": "Список"
+        },
+        "calendar": {
+          "view": "Календарь",
+          "today": "Сегодня",
+          "more": "еще",
+          "january": "Январь",
+          "february": "Февраль",
+          "march": "Март",
+          "april": "Апрель",
+          "may": "Май",
+          "june": "Июнь",
+          "july": "Июль",
+          "august": "Август",
+          "september": "Сентябрь",
+          "october": "Октябрь",
+          "november": "Ноябрь",
+          "december": "Декабрь",
+          "sunday": "Воскресенье",
+          "monday": "Понедельник",
+          "tuesday": "Вторник",
+          "wednesday": "Среда",
+          "thursday": "Четверг",
+          "friday": "Пятница",
+          "saturday": "Суббота",
+          "legend": {
+            "upcoming": "Предстоящие",
+            "ongoing": "В процессе",
+            "completed": "Завершенные"
+          }
+        },
+        "create": {
+          "title": "Создание события",
+          "description": "Заполните форму для создания нового события",
+          "titleLabel": "Название",
+          "titlePlaceholder": "Введите название события",
+          "descriptionLabel": "Описание",
+          "descriptionPlaceholder": "Введите описание события",
+          "typeLabel": "Тип события",
+          "typeClanWar": "Война кланов",
+          "typeScrim": "Скрим",
+          "typeTournament": "Турнир",
+          "typeTraining": "Тренировка",
+          "gameModeLabel": "Режим игры",
+          "gameModeInvasion": "Invasion",
+          "gameModeTC": "Territory Control",
+          "gameModeRAAS": "RAAS",
+          "gameModeAAS": "AAS",
+          "startDateLabel": "Дата начала",
+          "endDateLabel": "Дата окончания",
+          "serverLabel": "Сервер",
+          "serverPlaceholder": "Название или IP сервера",
+          "mapLabel": "Карта",
+          "mapPlaceholder": "Название карты",
+          "mapImageLabel": "Изображение карты",
+          "uploadMapImage": "Загрузить изображение карты",
+          "teamsSection": "Команды",
+          "team1NameLabel": "Название команды 1",
+          "team1NamePlaceholder": "Введите название команды",
+          "team1ImageLabel": "Изображение команды 1",
+          "team2NameLabel": "Название команды 2",
+          "team2NamePlaceholder": "Введите название команды",
+          "team2ImageLabel": "Изображение команды 2",
+          "uploadImage": "Загрузить изображение",
+          "uploading": "Загрузка...",
+          "removeImage": "Удалить изображение",
+          "resetToDefault": "Сбросить на стандартное",
+          "mapImageAutoLoaded": "Изображение карты будет автоматически загружено при выборе карты",
+          "uploadCustomMapImage": "Загрузить своё изображение карты",
+          "maxParticipantsLabel": "Максимальное количество участников",
+          "isPublicLabel": "Публичное событие",
+          "registrationOpenLabel": "Регистрация открыта",
+          "cancel": "Отмена",
+          "submit": "Создать",
+          "creating": "Создание..."
+        },
+        "deleteConfirm": "Вы уверены, что хотите удалить это событие?",
+        "deleteError": "Ошибка при удалении события",
+        "deleteDialog": {
+          "title": "Подтверждение удаления",
+          "description": "Вы уверены, что хотите удалить это событие? Это действие нельзя отменить.",
+          "cancel": "Отмена",
+          "confirm": "Удалить",
+          "deleting": "Удаление..."
+        },
+        "edit": {
+          "title": "Редактирование события",
+          "description": "Измените информацию о событии",
+          "statusLabel": "Статус",
+          "cancel": "Отмена",
+          "submit": "Сохранить",
+          "saving": "Сохранение..."
+        },
+        "status": {
+          "upcoming": "Предстоящее",
+          "ongoing": "В процессе",
+          "completed": "Завершено",
+          "cancelled": "Отменено"
+        },
+        "type": {
+          "clan_war": "Война кланов",
+          "scrim": "Скрим",
+          "tournament": "Турнир",
+          "training": "Тренировка"
+        },
+        "gameMode": {
+          "invasion": "Invasion",
+          "territory_control": "Territory Control",
+          "raas": "RAAS",
+          "aas": "AAS"
+        }
       },
       "system": {
         "title": "Системные настройки",
@@ -578,6 +740,49 @@
         "comingSoon": "Скоро",
         "comingSoonDescription": "Системные настройки будут доступны в ближайшее время"
       }
+    },
+    "events": {
+      "title": "События",
+      "description": "Просмотр всех доступных событий",
+      "empty": "События пока не созданы",
+      "registrationOpen": "Регистрация открыта",
+      "maxParticipants": "Макс. участников",
+      "status": {
+        "upcoming": "Предстоящее",
+        "ongoing": "В процессе",
+        "completed": "Завершено",
+        "cancelled": "Отменено"
+      },
+      "type": {
+        "clan_war": "Война кланов",
+        "scrim": "Скрим",
+        "tournament": "Турнир",
+        "training": "Тренировка"
+      },
+      "gameMode": {
+        "invasion": "Invasion",
+        "territory_control": "Territory Control",
+        "raas": "RAAS",
+        "aas": "AAS"
+      }
+    },
+    "squad": {
+      "title": "Управление отрядом",
+      "description": "Управление вашим отрядом и участниками",
+      "comingSoon": "Скоро",
+      "comingSoonDescription": "Функционал управления отрядом будет доступен в ближайшее время",
+      "content": "Здесь будет отображаться информация об отряде, участниках и их статистика.",
+      "notes": {
+        "title": "Заметки отряда",
+        "description": "Совместные заметки и тактические планы для вашего отряда",
+        "comingSoon": "Скоро",
+        "comingSoonDescription": "Функционал заметок будет доступен в ближайшее время",
+        "content": "Здесь вы сможете создавать и редактировать заметки, тактические планы и другую информацию для вашего отряда."
+      }
+    },
+    "profile": {
+      "displayName": "Отображаемое имя",
+      "role": "Роль"
     }
   }
 }

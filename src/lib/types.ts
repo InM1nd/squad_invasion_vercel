@@ -10,6 +10,8 @@ export interface EventItem {
   title: string;
   time?: string;
   location?: string;
+  source?: "platform" | "google_calendar";
+  htmlLink?: string | null;
 }
 
 export interface ContactInfo {

@@ -1,10 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { EventsList } from "@/components/admin/events/events-list";
+import { EventsCalendar } from "@/components/admin/events/events-calendar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Calendar, List } from "lucide-react";
 
 export default function AdminEventsPage() {
   const t = useTranslations("dashboard.admin.events");
+  const [view, setView] = useState<"list" | "calendar">("calendar");
 
   return (
     <div className="space-y-6">
@@ -13,12 +18,24 @@ export default function AdminEventsPage() {
         <p className="text-muted-foreground mt-2">{t("description")}</p>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("comingSoon")}</CardTitle>
-          <CardDescription>{t("comingSoonDescription")}</CardDescription>
-        </CardHeader>
-      </Card>
+      <Tabs value={view} onValueChange={(v) => setView(v as "list" | "calendar")}>
+        <TabsList>
+          <TabsTrigger value="calendar">
+            <Calendar className="mr-2 h-4 w-4" />
+            {t("calendar.view")}
+          </TabsTrigger>
+          <TabsTrigger value="list">
+            <List className="mr-2 h-4 w-4" />
+            {t("list.view")}
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="calendar" className="mt-6">
+          <EventsCalendar />
+        </TabsContent>
+        <TabsContent value="list" className="mt-6">
+          <EventsList />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

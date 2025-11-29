@@ -7,85 +7,132 @@ import {
   Clock,
   MapPin,
   MessageSquare,
-  Sparkles,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import type { EventItem } from "@/lib/types";
 import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 
-const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
-const CALENDAR_ID = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_ID;
+interface ApiEvent {
+  id: string;
+  title: string;
+  description: string | null;
+  type?: string;
+  game_mode?: string;
+  start_date: string;
+  end_date: string | null;
+  server?: string | null;
+  map?: string | null;
+  max_participants?: number;
+  is_public?: boolean;
+  registration_open?: boolean;
+  status?: string;
+  source?: "platform" | "google_calendar";
+  location?: string | null;
+  htmlLink?: string | null;
+}
 
 export function EventsSection() {
   const t = useTranslations("events");
+  const router = useRouter();
   const [events, setEvents] = useState<EventItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [usingDemo, setUsingDemo] = useState(false);
 
   useEffect(() => {
     async function fetchEvents() {
-      const demoEvents: EventItem[] = [
-        {
-          id: "demo-1",
-          title: "Harju Night Invasion // EU Prime",
-          date: new Date(Date.now() + 86400000).toISOString(),
-          time: "19:00 UTC",
-          location: "Private server",
-        },
-        {
-          id: "demo-2",
-          title: "Territory scrim vs SunOps",
-          date: new Date(Date.now() + 2 * 86400000).toISOString(),
-          time: "20:30 UTC",
-          location: "Custom lobby",
-        },
-        {
-          id: "demo-3",
-          title: "NA-friendly practice set",
-          date: new Date(Date.now() + 4 * 86400000).toISOString(),
-          time: "02:00 UTC",
-          location: "Discord coordination",
-        },
-      ];
-
-      if (!API_KEY || !CALENDAR_ID) {
-        setUsingDemo(true);
-        setEvents(demoEvents);
-        setLoading(false);
-        return;
-      }
-
       try {
-        const res = await fetch(
-          `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(
-            CALENDAR_ID,
-          )}/events?key=${API_KEY}&singleEvents=true&orderBy=startTime`,
-        );
-        const data = await res.json();
-        const items = Array.isArray(data.items) ? data.items : [];
-        type CalendarApiEvent = {
-          id: string;
-          summary: string;
-          start: { date?: string; dateTime?: string };
-          location?: string;
-        };
-        const parsedEvents: EventItem[] = items.map((item: CalendarApiEvent) => ({
-          id: item.id,
-          title: item.summary,
-          date: item.start.dateTime || item.start.date,
-          time: item.start.dateTime
-            ? new Date(item.start.dateTime).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })
-            : "",
-          location: item.location || "",
+        setLoading(true);
+        setError(null);
+        
+        // Fetch events from platform
+        const platformRes = await fetch("/api/events?status=upcoming&limit=10");
+        
+        if (!platformRes.ok) {
+          const errorText = await platformRes.text();
+          console.error("Platform API error (landing):", platformRes.status, errorText);
+          throw new Error(`Failed to fetch platform events: ${platformRes.status}`);
+        }
+        
+        const platformData = await platformRes.json();
+        
+        if (platformData.error) {
+          console.error("Platform API returned error (landing):", platformData.error);
+          throw new Error(platformData.error || "Failed to fetch platform events");
+        }
+
+        // Mark platform events with source
+        const platformEvents: ApiEvent[] = (platformData.events || []).map((event: ApiEvent) => ({
+          ...event,
+          source: "platform" as const,
         }));
-        setEvents(parsedEvents);
-        setUsingDemo(false);
+
+        console.log("Platform events loaded (landing):", platformEvents.length);
+
+        // Fetch events from Google Calendar directly from client
+        let googleEvents: ApiEvent[] = [];
+        try {
+          const { fetchGoogleCalendarEvents } = await import("@/lib/google-calendar");
+          const now = new Date();
+          now.setHours(0, 0, 0, 0);
+          const futureDate = new Date();
+          futureDate.setMonth(futureDate.getMonth() + 3); // Get events for next 3 months
+          futureDate.setHours(23, 59, 59, 999);
+          
+          googleEvents = await fetchGoogleCalendarEvents(
+            now.toISOString(),
+            futureDate.toISOString(),
+            10
+          );
+          console.log("Google Calendar events loaded (landing):", googleEvents.length);
+        } catch (googleError) {
+          console.warn("Failed to load Google Calendar events (landing):", googleError);
+          // Continue without Google Calendar events if there's an error
+        }
+
+        // Combine events from both sources
+        const allEvents = [...platformEvents, ...googleEvents];
+
+        console.log("Total events (landing):", allEvents.length);
+
+        // Filter out past events and sort by start_date
+        const now = new Date();
+        const futureEvents = allEvents.filter((event) => {
+          const eventDate = new Date(event.start_date);
+          return eventDate >= now;
+        });
+
+        // Sort by start_date
+        futureEvents.sort((a, b) => {
+          const dateA = new Date(a.start_date).getTime();
+          const dateB = new Date(b.start_date).getTime();
+          return dateA - dateB;
+        });
+
+        console.log("Future events after filtering:", futureEvents.length);
+
+        // Transform to EventItem format
+        const transformedEvents: EventItem[] = futureEvents.slice(0, 10).map((event: ApiEvent) => {
+          const startDate = new Date(event.start_date);
+          return {
+            id: event.id,
+            title: event.title,
+            date: event.start_date,
+            time: startDate.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
+            location: event.server || event.map || event.location || "",
+            source: event.source || "platform",
+            htmlLink: event.htmlLink || null,
+          };
+        });
+
+        console.log("Transformed events (landing):", transformedEvents.length);
+        setEvents(transformedEvents);
       } catch (err) {
         console.error("Failed to fetch events:", err);
         setError(t("error"));
@@ -150,11 +197,24 @@ export function EventsSection() {
       const date = new Date(event.date);
       const month = date.toLocaleDateString("en-US", { month: "short" });
       const day = date.getDate();
+      const isGoogleEvent = event.source === "google_calendar";
 
       return (
         <Card
           key={event.id}
-          className="p-6 border border-border/70 hover:border-primary/40 transition-all duration-300 bg-card/90 backdrop-blur hover:shadow-xl hover:shadow-primary/5 hover:scale-[1.02] group relative overflow-hidden"
+          className={cn(
+            "p-6 border border-border/70 hover:border-primary/40 transition-all duration-300 bg-card/90 backdrop-blur hover:shadow-xl hover:shadow-primary/5 hover:scale-[1.02] group relative overflow-hidden",
+            isGoogleEvent && "border-l-4 border-l-green-500"
+          )}
+          onClick={() => {
+            if (isGoogleEvent && event.htmlLink) {
+              window.open(event.htmlLink, "_blank");
+            } else if (!isGoogleEvent) {
+              // Navigate to event details page for platform events
+              router.push(`/events/${event.id}`);
+            }
+          }}
+          style={!isGoogleEvent || event.htmlLink ? { cursor: "pointer" } : undefined}
         >
           <div className="absolute inset-0 bg-linear-to-br from-primary/0 via-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:via-primary/2 group-hover:to-primary/5 transition-all duration-300" />
           <div className="relative z-10 flex flex-col sm:flex-row flex-wrap gap-6 items-start sm:items-center">
@@ -167,6 +227,7 @@ export function EventsSection() {
 
             <div className="flex-1 space-y-2">
               <h3 className="text-lg md:text-xl font-semibold text-foreground transition-colors duration-300 group-hover:text-primary">
+                {isGoogleEvent && "📅 "}
                 {event.title}
               </h3>
               <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
@@ -218,14 +279,6 @@ export function EventsSection() {
               </a>
             </Button>
           </div>
-          {usingDemo && (
-            <div className="inline-flex items-center gap-2">
-              <div className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-4 py-1 text-xs font-medium text-amber-700">
-                <Sparkles className="h-3 w-3" />
-                {t("demoNotice")}
-              </div>
-            </div>
-          )}
         </div>
 
         <div className="space-y-4 max-w-3xl mx-auto">{renderContent()}</div>
